@@ -85,7 +85,7 @@
                     <li class="nav-item"><a class="nav-link" href="">View</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Trang Thống Kê</a></li>
                     <li class="nav-item">
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button class="nav-link btn btn-link" type="submit" style="color: white;">Đăng xuất</button>
                         </form>
