@@ -20,12 +20,13 @@
             color: #d4d4d4 !important;
         }
         .hero-section {
-            background: url('https://source.unsplash.com/random/1920x1080') no-repeat center center/cover;
+            background: url('https://img.lovepik.com/photo/50094/9419.jpg_wh860.jpg') no-repeat center center/cover;
             color: #fff;
             padding: 100px 0;
             text-align: center;
             position: relative;
         }
+
         .hero-section:before {
             content: '';
             position: absolute;
@@ -33,11 +34,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.5); /* Overlay màu tối */
+            z-index: 0;
         }
         .hero-section h1, .hero-section p {
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Đặt chữ nổi trên ảnh */
         }
         .container {
             padding: 30px 0;
@@ -73,41 +75,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="">Phim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Hãng phim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Thể loại phim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Phiếu thanh toán</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Lịch sử xem</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Tài khoản</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Short Video</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">View</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Trang Thống Kê</a></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Phim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Hãng phim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Thể loại phim</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Phiếu thanh toán</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Lịch sử xem</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Tài khoản</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Short Video</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">View</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Trang Thống Kê</a>
-                    </li>
-                    <li class="nav-item">
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <button class="nav-link btn btn-link" type="submit" style="color: white;">Đăng xuất</button>
                         </form>
                     </li>
                 </ul>
-                
             </div>
         </div>
     </nav>
@@ -184,22 +167,28 @@
                         <a href="" class="btn btn-dark">Quản lý short video</a>
                     </div>
                 </div>
-            </div> 
+            </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">View</h5>
-                        <p class="card-text">Hiển thị view các video mới up</p>
-                        <a href="" class="btn btn-dark">Quản lý view</a>
+                        <h5 class="card-title">Quản lý View</h5>
+                        <p class="card-text">Hiển thị view các video mới.</p>
+                        <a href="" class="btn btn-dark">Quản lý View</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-            <div class="card">
-                     <div class="card-body text-center">
-                         <h5 class="card-title">Xem số lượt xem Phim</h5>
-                         <p class="card-text">Xem lượt xem phim.</p>
-                         <a href="" class="btn btn-info">Số lượt xem</a>
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Thống kê</h5>
+                        <p class="card-text">Xem thống kê lượt xem phim.</p>
+                        <a href="" class="btn btn-info">Xem thống kê</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-                                 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
