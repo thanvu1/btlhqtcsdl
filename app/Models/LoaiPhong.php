@@ -11,9 +11,11 @@ class LoaiPhong extends Model
     protected $table = 'loaiphong';
     protected $primaryKey = 'MaLP';
     public $timestamps = false;
+    public $incrementing = false; // Không tự tăng
+    protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
 
     protected $fillable = ['MaLP', 'TenLP', 'LoaiGiuong', 'DonGia'];
-
+    
     // Quan hệ 1:N với bảng PHONG
     public function phong()
     {

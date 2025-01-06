@@ -12,6 +12,8 @@ class DichVu extends Model
     protected $table = 'dichvu';
     protected $primaryKey = 'MaDV';
     public $timestamps = false;
+    protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
+    public $incrementing = false; // Không tự tăng
 
     protected $fillable = ['MaDV', 'TenDV', 'DonGia'];
 
