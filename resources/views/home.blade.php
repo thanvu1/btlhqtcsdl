@@ -75,8 +75,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="">Phim</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Hãng phim</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('phong.index') }}">Phòng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('loaiphong.index')}}">Loại phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Thể loại phim</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Phiếu thanh toán</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Lịch sử xem</a></li>

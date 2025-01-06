@@ -11,6 +11,8 @@ class PhieuThue extends Model
     protected $table = 'phieuthue';
     protected $primaryKey = 'MaPT';
     public $timestamps = false;
+    protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
+    public $incrementing = false; // Không tự tăng
 
     protected $fillable = ['MaPT', 'MaPhong', 'MaKH', 'NgayThue', 'NgayTra', 'GiaMotNgay', 'MaNV'];
 
