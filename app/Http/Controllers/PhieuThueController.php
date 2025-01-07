@@ -53,28 +53,43 @@ class PhieuThueController extends Controller
 
     public function edit($id)
     {
-        $phieuthue = PhieuThue::findOrFail($id);
-        $phongs = Phong::where('TinhTrang', 'Còn trống')->orWhere('MaPhong', $phieuthue->MaPhong)->get();
+        $phieuthue = PhieuThue::findOrFail($id); // Lấy phiếu thuê theo ID
+        $phongs = Phong::where('TinhTrang', 'Còn trống')
+            ->orWhere('MaPhong', $phieuthue->MaPhong) // Bao gồm phòng hiện tại nếu đã thuê
+            ->get();
         $khachhangs = KhachHang::all();
         $nhanviens = NhanVien::all();
+
         return view('phieuthue.edit', compact('phieuthue', 'phongs', 'khachhangs', 'nhanviens'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'MaPhong' => 'required|exists:phong,MaPhong',
-            'MaKH' => 'required|exists:khachhang,MaKH',
             'NgayThue' => 'required|date',
             'NgayTra' => 'required|date|after_or_equal:NgayThue',
-            'GiaMotNgay' => 'required|numeric',
-            'MaNV' => 'nullable|exists:nhanvien,MaNV',
+            'MaKH' => 'required|exists:khachhang,MaKH',
+            'MaPhong' => 'required|exists:phong,MaPhong',
         ]);
 
         $phieuthue = PhieuThue::findOrFail($id);
-        $phieuthue->update($request->all());
 
-        return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được cập nhật thành công.');
+        try {
+            // Kiểm tra nếu phòng thay đổi
+            if ($phieuthue->MaPhong !== $request->MaPhong) {
+                // Đánh dấu phòng cũ là "Còn trống"
+                Phong::where('MaPhong', $phieuthue->MaPhong)->update(['TinhTrang' => 'Còn trống']);
+                // Đánh dấu phòng mới là "Đã thuê"
+                Phong::where('MaPhong', $request->MaPhong)->update(['TinhTrang' => 'Đã thuê']);
+            }
+
+            // Cập nhật phiếu thuê
+            $phieuthue->update($request->only(['NgayThue', 'NgayTra', 'MaKH', 'MaPhong']));
+
+            return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được cập nhật thành công.');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
+        }
     }
 
     public function destroy($id)

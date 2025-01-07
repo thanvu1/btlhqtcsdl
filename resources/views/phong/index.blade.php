@@ -261,16 +261,13 @@ table.table .avatar {
 					<a href="{{ route('phong.thongke-tinhtrang') }}" class="btn btn-primary me-2 mb-2">
 						Xem Thống Kê
 					</a>
-                        <a href="{{ route('phong.solan') }}" class="btn btn-primary me-2 mb-2">
+                        <a href="{{ route('tvu.solanphongduocsudungtrongthang') }}" class="btn btn-primary me-2 mb-2">
                             Số lần sử dụng phòng
                         </a>
-					<a href="{{ route('phong.solan') }}" class="btn btn-secondary mb-2">
+					<a href="{{ route('tvu.kiem-tra-tinh-trang') }}" class="btn btn-secondary mb-2">
 						<i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
-					<a href="{{ route('phong.thongke') }}" class="btn btn-primary me-2 mb-2">
-						Xem Thống Kê Phòng
 					</a>
-					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.controng') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
-				</div>
+					</div>
 				</div>
 			</div>
 

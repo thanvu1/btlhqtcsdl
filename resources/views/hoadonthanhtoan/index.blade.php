@@ -167,8 +167,8 @@
                         </div>
                         <div class="col-sm-6">
                             <a href="{{ route('home') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span></a>
-                            <a href="{{ route('hoadonthanhtoan.create') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Thêm mới</span></a>
-                            
+                            <a href="{{ route('hoadonthanhtoan.create') }}" class="btn btn-success"><i class="material-icons">&#xE5C4;</i> <span>Thêm mới</span></a>
+                            <a href="{{ route('tvu.thongkedoanhthutheothangnam')}}" class="btn btn-success">><span>Doanh thu theo tháng</span></a>
                         </div>
                     </div>
                 </div>

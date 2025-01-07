@@ -94,24 +94,4 @@ class PhongController extends Controller
             return view('phong.thongke-tinhtrang', ['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
         }
     }
-
-    public function soLanSuDung(Request $request)
-    {
-        $request->validate([
-            'thang' => 'required|integer|min:1|max:12',
-            'nam' => 'required|integer|min:2000|max:2100',
-        ]);
-
-        $thang = $request->input('thang');
-        $nam = $request->input('nam');
-
-        try {
-            // Gọi hàm SQL fn_SoLanPhongDuocSuDungTrongThang
-            $soLanSuDung = DB::select('SELECT * FROM fn_SoLanPhongDuocSuDungTrongThang(?, ?)', [$nam, $thang]);
-
-            return view('phong.solan', compact('soLanSuDung', 'thang', 'nam'));
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
-        }
-    }
 }

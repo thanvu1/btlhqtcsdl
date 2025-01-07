@@ -27,36 +27,21 @@
             margin-bottom: 20px;
             text-align: center;
         }
-        .contact-form .form-control {
-            border-radius: 5px;
-            min-height: 40px;
-        }
-        .contact-form .form-control:focus {
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
-        }
-        .contact-form .btn-primary {
-            background: #4CAF50;
-            border: none;
-            font-size: 16px;
-            padding: 10px 20px;
-        }
-        .contact-form .btn-primary:hover {
-            background: #45A049;
-        }
-        .contact-form .btn-secondary {
-            font-size: 16px;
-            padding: 10px 20px;
-        }
-        .contact-form label {
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="contact-form">
             <h1>Chỉnh Sửa Phiếu Thuê</h1>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('phieuthue.update', $phieuthue->MaPT) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -77,17 +62,29 @@
                 </div>
                 <!-- Mã Khách Hàng -->
                 <div class="mb-3">
-                    <label for="MaKH" class="form-label">Mã Khách Hàng</label>
-                    <input type="text" class="form-control" id="MaKH" name="MaKH" value="{{ $phieuthue->MaKH }}" required>
+                    <label for="MaKH" class="form-label">Khách Hàng</label>
+                    <select id="MaKH" name="MaKH" class="form-select" required>
+                        @foreach ($khachhangs as $khachhang)
+                            <option value="{{ $khachhang->MaKH }}" {{ $phieuthue->MaKH == $khachhang->MaKH ? 'selected' : '' }}>
+                                {{ $khachhang->HoTen }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <!-- Mã Phòng -->
                 <div class="mb-3">
-                    <label for="MaPhong" class="form-label">Mã Phòng</label>
-                    <input type="text" class="form-control" id="MaPhong" name="MaPhong" value="{{ $phieuthue->MaPhong }}" required>
+                    <label for="MaPhong" class="form-label">Phòng</label>
+                    <select id="MaPhong" name="MaPhong" class="form-select" required>
+                        @foreach ($phongs as $phong)
+                            <option value="{{ $phong->MaPhong }}" {{ $phieuthue->MaPhong == $phong->MaPhong ? 'selected' : '' }}>
+                                {{ $phong->TenPhong }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary">Cập Nhật</button>
+                    <button type="submit" class="btn btn-success">Cập Nhật</button>
                     <a href="{{ route('phieuthue.index') }}" class="btn btn-secondary">Về</a>
                 </div>
             </form>

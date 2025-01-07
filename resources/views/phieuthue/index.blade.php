@@ -43,11 +43,22 @@
                         <div class="col-sm-6">
                             <h2>Danh Sách Phiếu Thuê</h2>
                         </div>
-                        <div class="col-sm-6">
-                            <a href="{{ route('home') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span></a>
-                            <a href="{{ route('phieuthue.create') }}" class="btn btn-success">
-                                <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
+                        <div class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap">
+                        <a href="{{ route('home') }}" class="btn btn-secondary me-2 mb-2">
+                            <i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span>
+                        </a>
+                        <a href="{{ route('phieuthue.create') }}" class="btn btn-success me-2 mb-2">
+                            <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
+                        </a>
+                        <a href="{{ route('phieuthue.vw_dspt') }}" class="btn btn-primary me-2 mb-2">
+                            Xem danh sách phiếu thuê
+                        </a>
+                            <a href="" class="btn btn-primary me-2 mb-2">
+                                Số lần sử dụng phòng
                             </a>
+                        <a href="" class="btn btn-secondary mb-2">
+                            <i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
+                        </a>
                         </div>
                     </div>
                 </div>

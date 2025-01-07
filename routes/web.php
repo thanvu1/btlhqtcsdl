@@ -17,10 +17,15 @@ use App\Http\Controllers\ChiTietPhieuDichVuController;
 use App\Http\Controllers\TungTriggerController;
 use App\Http\Controllers\TungProc1Controller;
 use App\Http\Controllers\TungViewController;
+use App\Http\Controllers\DanhSachPhieuThueController;
+use App\Http\Controllers\TvuController;
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/tvu/thong-ke-doanh-thu', [TvuController::class, 'thongKeDoanhThu'])->name('tvu.thongkedoanhthutheothangnam');
+    Route::get('/tvu/kiem-tra-tinh-trang', [TvuController::class, 'kiemTraTinhTrangPhong'])->name('tvu.kiem-tra-tinh-trang');
+    Route::get('/tvu', [TvuController::class, 'index'])->name('tvu.solanphongduocsudungtrongthang');
+    Route::get('/phieuthue/vw_dspt', [DanhSachPhieuThueController::class, 'index'])->name('phieuthue.vw_dspt');
     Route::get('/phong/thongke-tinhtrang', [PhongController::class, 'thongKeSoLuongPhongTheoTinhTrang'])->name('phong.thongke-tinhtrang');
-    Route::get('/phong/solan', [PhongController::class, 'soLanSuDung'])->name('phong.solan');
     // Báo cáo doanh thu theo ngày
     Route::get('/baocao', [vDoanhThuTheoNgayController::class, 'index'])->name('baocao.index');
     Route::get('/phong/controng', [TungViewController::class, 'index'])->name('phong.controng');
@@ -35,7 +40,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('dichvu', DichVuController::class);
     Route::resource('phieudichvu', PhieuDichVuController::class);
     Route::resource('chitietphieu', ChiTietPhieuDichVuController::class);
-    
 });
 
 
