@@ -18,15 +18,18 @@ use App\Http\Controllers\TungProc1Controller;
 use App\Http\Controllers\TungViewController;
 
 Route::middleware(['auth'])->group(function () {
+<<<<<<< HEAD
     Route::get('/phong/controng', [TungViewController::class, 'index'])->name('phong.controng');
     Route::get('/thong-ke/phong', [TungProc1Controller::class, 'thongKePhongTheoLoaiGiuong'])->name('phong.thongke');
+=======
+    Route::resource('hoadonthanhtoan', HoaDonThanhToanController::class);
+>>>>>>> origin/ChungNT
     Route::resource('loaiphong', LoaiPhongController::class);
     Route::resource('phong', PhongController::class);
     Route::resource('khachhang', KhachHangController::class);
     Route::resource('bophan', BoPhanController::class);
     Route::resource('nhanvien', NhanVienController::class);
     Route::resource('phieuthue', PhieuThueController::class);
-    Route::resource('hoadon', HoaDonThanhToanController::class);
     Route::resource('dichvu', DichVuController::class);
     Route::resource('phieudichvu', PhieuDichVuController::class);
     Route::resource('chitietphieu', ChiTietPhieuDichVuController::class);
@@ -50,3 +53,4 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware(['auth'])->get('/home', function () {
     return view('home');
 })->name('home');
+
