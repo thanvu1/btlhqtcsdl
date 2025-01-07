@@ -15,6 +15,12 @@ class PhongController extends Controller
         $phongs = Phong::with('loaiPhong')->paginate(10);
         return view('phong.index', compact('phongs'));
     }
+    //Tùng-PROC1: Thống kê phòng theo loại giường – Đếm số lượng phòng theo loại giường.
+    public function thongKePhong()
+    {
+        $thongke = DB::select('EXEC ThongKePhongTheoLoaiGiuong');
+        return view('phong.thongke', compact('thongke'));
+    }
 
     // Hiển thị form tạo phòng mới
     public function create()
