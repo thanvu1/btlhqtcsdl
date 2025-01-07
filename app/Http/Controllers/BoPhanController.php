@@ -11,11 +11,13 @@ class BoPhanController extends Controller
     {
         $bophans = BoPhan::paginate(10); // Phân trang
         return view('bophan.index', compact('bophans'));
+
     }
 
     public function create()
     {
-        return view('bophan.create');
+        $bophans = BoPhan::all();
+        return view('bophan.create', compact('bophans'));
     }
 
     public function store(Request $request)

@@ -12,6 +12,7 @@ class BoPhan extends Model
     protected $table = 'bophan';
     protected $primaryKey = 'MaBP';
     public $timestamps = false;
+    protected $keyType = 'string';
 
     protected $fillable = ['MaBP', 'TenBP', 'MoTa'];
 

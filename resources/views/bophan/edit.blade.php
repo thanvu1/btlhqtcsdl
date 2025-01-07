@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh Sửa Loại Phòng</title>
+    <title>Chỉnh Bộ Phận</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -51,47 +51,35 @@
         .contact-form label {
             font-weight: bold;
         }
-        .contact-form .hint-text {
-            font-size: 14px;
-            color: #6c757d;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="contact-form">
-            <h1>Chỉnh Sửa Loại Phòng</h1>
-            <form action="{{ route('loaiphong.update', $loaiphong->MaLP) }}" method="POST">
+            <h1>Chỉnh Bộ Phận</h1>
+            <form action="{{ route('bophan.update', $bophan->MaBP) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <!-- Mã Loại Phòng -->
+                <!-- Mã Phòng -->
                 <div class="mb-3">
-                    <label for="MaLP" class="form-label">Mã Loại Phòng</label>
-                    <input type="text" class="form-control" id="MaLP" name="MaLP" value="{{ $loaiphong->MaLP }}" readonly>
+                    <label for="MaBP" class="form-label">Mã Bộ Phận</label>
+                    <input type="text" class="form-control" id="MaBP" name="MaBP" value="{{ $bophan->MaBP }}" readonly>
                 </div>
-                <!-- Tên Loại Phòng -->
+                <!-- Tên Phòng -->
                 <div class="mb-3">
-                    <label for="TenLP" class="form-label">Tên Loại Phòng</label>
-                    <input type="text" class="form-control" id="TenLP" name="TenLP" value="{{ $loaiphong->TenLP }}" required>
+                    <label for="TenBP" class="form-label">Tên Bộ Phận</label>
+                    <input type="text" class="form-control" id="TenBP" name="TenBP" value="{{ $bophan->TenBP }}" required>
                 </div>
-                <!-- Loại Giường -->
+                
+                <!-- Mô tả -->
                 <div class="mb-3">
-                    <label for="LoaiGiuong" class="form-label">Loại Giường</label>
-                    <select class="form-select" id="LoaiGiuong" name="LoaiGiuong" required>
-                        <option value="Giường Đơn" {{ $loaiphong->LoaiGiuong == 'Giường Đơn' ? 'selected' : '' }}>Giường Đơn</option>
-                        <option value="Giường Đôi" {{ $loaiphong->LoaiGiuong == 'Giường Đôi' ? 'selected' : '' }}>Giường Đôi</option>
-                    </select>
-                </div>
-                <!-- Đơn Giá -->
-                <div class="mb-3">
-                    <label for="DonGia" class="form-label">Đơn Giá</label>
-                    <input type="number" class="form-control" id="DonGia" name="DonGia" value="{{ $loaiphong->DonGia }}" required>
+                    <label for="MoTa" class="form-label">Mô tả</label>
+                    <textarea class="form-control" id="MoTa" name="MoTa" rows="3">{{ $bophan->MoTa }}</textarea>
                 </div>
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                    <a href="{{ route('loaiphong.index') }}" class="btn btn-secondary">Về</a>
+                    <a href="{{ route('bophan.index') }}" class="btn btn-secondary">Về</a>
                 </div>
             </form>
         </div>

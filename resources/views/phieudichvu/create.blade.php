@@ -20,11 +20,6 @@
                         <label for="MaPhieuDV" class="form-label">Mã Phiếu Dịch Vụ</label>
                         <input type="text" class="form-control" id="MaPhieuDV" name="MaPhieuDV" placeholder="VD: PDV001" required>
                     </div>
-                    
-                    <div class="mb-3">
-                        <label for="NgayLap" class="form-label">Ngày Lập</label>
-                        <input type="date" class="form-control" id="NgayLap" name="NgayLap" required>
-                    </div>
 
                     <div class="mb-3">
                         <label for="NgayLap" class="form-label">Ngày Lập</label>

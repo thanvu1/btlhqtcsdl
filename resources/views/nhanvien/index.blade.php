@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Loại Phòng</title>
+<title>Nhân Viên</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <!-- Liên kết Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<style> 
+<style>
 body {
 	color: #566787;
 	background: #f5f5f5;
@@ -31,7 +32,7 @@ body {
 	min-width: 1000px;
 	box-shadow: 0 1px 1px rgba(0,0,0,.05);
 }
-.table-title {        
+.table-title {
 	padding-bottom: 15px;
 	background: #435d7d;
 	color: #fff;
@@ -88,7 +89,7 @@ table.table th i {
 	font-size: 13px;
 	margin: 0 5px;
 	cursor: pointer;
-}	
+}
 table.table td:last-child i {
 	opacity: 0.9;
 	font-size: 22px;
@@ -136,11 +137,11 @@ table.table .avatar {
 }
 .pagination li a:hover {
 	color: #666;
-}	
+}
 .pagination li.active a, .pagination li.active a.page-link {
 	background: #03A9F4;
 }
-.pagination li.active a:hover {        
+.pagination li.active a:hover {
 	background: #0397d6;
 }
 .pagination li.disabled i {
@@ -154,12 +155,12 @@ table.table .avatar {
 	float: left;
 	margin-top: 10px;
 	font-size: 13px;
-}    
+}
 /* Custom checkbox */
 .custom-checkbox {
 	position: relative;
 }
-.custom-checkbox input[type="checkbox"] {    
+.custom-checkbox input[type="checkbox"] {
 	opacity: 0;
 	position: absolute;
 	margin: 5px 0 0 3px;
@@ -235,29 +236,40 @@ table.table .avatar {
 .modal .btn {
 	border-radius: 2px;
 	min-width: 100px;
-}	
+}
 .modal form label {
 	font-weight: normal;
-}	
+}
 </style>
 </head>
 <body>
 <div class="container-xl">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h2>LOẠI PHÒNG</h2>
-                    </div>
-                    <div class="col-sm-6">
-					<a href="{{ route('home') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span></a>
-                        <a href="{{ route('loaiphong.create') }}" class="btn btn-success">
-                            <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+	<div class="table-responsive">
+		<div class="table-wrapper">
+			<div class="table-title">
+				<div class="row">
+					<div class="col-sm-6">
+						<h2>Nhân viên</br></h2>
+					</div>
+					<div class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap">
+					<a href="{{ route('home') }}" class="btn btn-secondary me-2 mb-2">
+						<i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span>
+					</a>
+					<a href="{{ route('nhanvien.create') }}" class="btn btn-success me-2 mb-2">
+						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
+					</a>
+					<a href="{{ route('nhanvien.tungproc2') }}" class="btn btn-primary me-2 mb-2">
+						Xem Thống Kê
+					</a>
+					<a href="" class="btn btn-primary me-2 mb-2">
+						Xem Phim Sắp Chiếu
+					</a>
+					<a href="" class="btn btn-secondary mb-2">
+						<i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
+					</a>
+				</div>
+				</div>
+			</div>
 
             @if (session('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
@@ -275,68 +287,84 @@ table.table .avatar {
                     }
                 }, 2500); // 2500ms = 2.5 giây
             </script>
-
-            {{-- Bảng dữ liệu --}}
-            
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Mã Loại Phòng</th>
-                        <th>Tên Loại Phòng</th>
-                        <th>Loại Giường</th>
-                        <th>Đơn Giá</th>
-                        <th>Thao Tác</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($loaiphongs as $loaiphong)
-                        <tr>
-                            <td>{{ $loaiphong->MaLP }}</td>
-                            <td>{{ $loaiphong->TenLP }}</td>
-                            <td>{{ $loaiphong->LoaiGiuong }}</td>
-                            <td>{{ number_format($loaiphong->DonGia, 0, ',', '.') }} VND</td>
-                            <td>
-                                <a href="{{ route('loaiphong.edit', $loaiphong->MaLP) }}" class="edit"><i class="material-icons" title="Chỉnh sửa">&#xE254;</i></a>
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $loaiphong->MaLP }}">
-                                    Xóa
-                                </button>
-                                <!-- Modal Xóa -->
-                                <div class="modal fade" id="deleteModal{{ $loaiphong->MaLP }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $loaiphong->MaLP }}" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="deleteModalLabel{{ $loaiphong->MaLP }}">Xác nhận xóa</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Bạn có chắc chắn muốn xóa loại phòng "{{ $loaiphong->TenLP }}" không?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <form action="{{ route('loaiphong.destroy', $loaiphong->MaLP) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Xóa</button>
-                                                </form>
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                            </div>
-                                        </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Mã Nhân Viên</th>
+                <th>Tên Nhân Viên</th>
+                <th>Tên Bộ Phận</th>
+                <th>Ngày Sinh</th>
+                <th>Giới Tính</th>
+                <th>SĐT</th>
+                <th>CCCD</th>
+                <th>Chức Vụ</th>
+                <th>Lương</th>
+                <th>Thao Tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($nhanviens as $nhanvien)
+                <tr>
+                    <td>{{ $nhanvien->MaNV}}</td>
+                    <td>{{ $nhanvien->TenNV}}</td>
+                    <td>{{ $nhanvien->boPhan->TenBP ?? 'Chưa có' }}</td>
+                    <td>{{ $nhanvien->NgaySinh}}</td>
+                    <td>{{ $nhanvien->GioiTinh}}</td>
+                    <td>{{ $nhanvien->SDT}}</td>
+                    <td>{{ $nhanvien->CCCD}}</td>
+                    <td>{{ $nhanvien->ChucVu}}</td>
+                    <td>{{ $nhanvien->Luong}}</td>
+                    <td>
+                        <a href="{{ route('nhanvien.edit', $nhanvien->MaNV) }}" class="edit" data-bs-toggle="tooltip" title="Chỉnh sửa">
+                            <i class="material-icons">&#xE254;</i>
+                        </a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ $nhanvien->MaNV }}">Xóa
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal{{ $nhanvien->MaNV }}" tabindex="-1"
+                             aria-labelledby="deleteModalLabel{{ $nhanvien->MaNV }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel{{ $nhanvien->MaNV }}">Xóa bộ phận</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa nhân viên <b>{{ $nhanvien->MaNV }}</b>?
+                                    </div>
+                                    <form action="{{ route('nhanvien.destroy', $nhanvien->MaNV) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-
-            {{-- Phân trang --}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            @if ($nhanviens->isEmpty())
+                <tr>
+                    <td colspan="4" class="text-center">Không có nhân viên nào.</td>
+                </tr>
+            @endif
+        </tbody>
+        @if($nhanviens->hasPages())
             <div class="d-flex justify-content-center">
-                {{ $loaiphongs->links('pagination::bootstrap-4') }}
+                {{ $nhanviens->links('pagination::bootstrap-4') }}
             </div>
-        </div>
-    </div>
+        @endif
+        
+	<table>
+	{{-- Phân trang nếu cần --}}
+	<div class="d-flex justify-content-center">
+		{{ $nhanviens->links('pagination::bootstrap-4') }}
+	</div>
 </div>
-
 
 </body>
 </html>
