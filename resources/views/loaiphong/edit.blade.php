@@ -77,8 +77,7 @@
                 </div>
                 <!-- Loại Giường -->
                 <div class="mb-3">
-                    <label for="LoaiGiuong" class="form-label">Loại Giường</label>
-                    <select class="form-select" id="LoaiGiuong" name="LoaiGiuong" required>
+                    <label for="LoaiGiuong" class="form-label">Loại Giường</label><select class="form-select" id="LoaiGiuong" name="LoaiGiuong" required>
                         <option value="Giường Đơn" {{ $loaiphong->LoaiGiuong == 'Giường Đơn' ? 'selected' : '' }}>Giường Đơn</option>
                         <option value="Giường Đôi" {{ $loaiphong->LoaiGiuong == 'Giường Đôi' ? 'selected' : '' }}>Giường Đôi</option>
                     </select>
