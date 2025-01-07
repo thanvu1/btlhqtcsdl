@@ -249,19 +249,24 @@ table.table .avatar {
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>PHÒNG</br></h2>
+						<h2>Bộ Phận</br></h2>
 					</div>
 					<div class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap">
 					<a href="{{ route('home') }}" class="btn btn-secondary me-2 mb-2">
 						<i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span>
 					</a>
-					<a href="{{ route('phong.create') }}" class="btn btn-success me-2 mb-2">
+					<a href="{{ route('bophan.create') }}" class="btn btn-success me-2 mb-2">
 						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
 					</a>
-					<a href="{{ route('phong.thongke') }}" class="btn btn-primary me-2 mb-2">
-						Xem Thống Kê Phòng
+					<a href="" class="btn btn-primary me-2 mb-2">
+						Xem Thống Kê
 					</a>
-					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.controng') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
+					<a href="" class="btn btn-primary me-2 mb-2">
+						Xem Phim Sắp Chiếu
+					</a>
+					<a href="" class="btn btn-secondary mb-2">
+						<i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
+					</a>
 				</div>
 				</div>
 			</div>
@@ -285,66 +290,67 @@ table.table .avatar {
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Mã Phòng</th>
-                <th>Tên Phòng</th>
-                <th>Tình Trạng</th>
-                <th>Loại Phòng</th>
-                <th>Loại Giường</th>
-                <th>Đơn Giá</th>
-                <th>Ghi Chú</th>
-                <th>Thao Tác</th>
+                <th>Mã Bộ Phận</th>
+                <th>Tên Bộ Phận</th>
+                <th>Mô tả</th>
+                <th>Thao Tác</th> <!-- Thêm cột này -->
             </tr>
         </thead>
         <tbody>
-            @foreach ($phongs as $phong)
-                    <tr>
-                        <td>{{ $phong->MaPhong }}</td>
-                        <td>{{ $phong->TenPhong }}</td>
-                        <td>{{ $phong->TinhTrang }}</td>
-                        <td>{{ $phong->loaiPhong->TenLP ?? 'Không xác định' }}</td>
-                        <td>{{ $phong->loaiPhong->LoaiGiuong ?? 'Không xác định' }}</td>
-                        <td>{{ number_format($phong->loaiPhong->DonGia ?? 0, 0, ',', '.') }} VND</td>
-                        <td>{{ $phong->GhiChu }}</td>
-                        <td>
-                            <a href="{{ route('phong.edit', $phong->MaPhong) }}" class="edit" >
-								<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							</a>
-                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $phong->MaPhong }}">Xóa
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="deleteModal{{ $phong->MaPhong }}" tabindex="-1"
-                                 aria-labelledby="deleteModalLabel{{ $phong->MaPhong }}" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel{{ $phong->MaPhong }}">Xóa phòng</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            Bạn có chắc chắn muốn xóa phòng <b>{{ $phong->TenPhong }}</b>?
-                                        </div>
+            @foreach ($bophans as $bophan)
+                <tr>
+                    <td>{{ $bophan->MaBP }}</td>
+                    <td>{{ $bophan->TenBP }}</td>
+                    <td>{{ $bophan->MoTa }}</td>
+                    <td>
+                        <a href="{{ route('bophan.edit', $bophan->MaBP) }}" class="edit" data-bs-toggle="tooltip" title="Chỉnh sửa">
+                            <i class="material-icons">&#xE254;</i>
+                        </a>
+                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ $bophan->MaBP }}">Xóa
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="deleteModal{{ $bophan->MaBP }}" tabindex="-1"
+                             aria-labelledby="deleteModalLabel{{ $bophan->MaBP }}" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel{{ $bophan->MaBP }}">Xóa bộ phận</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Bạn có chắc chắn muốn xóa bộ phận <b>{{ $bophan->TenBP }}</b>?
+                                    </div>
+                                    <form action="{{ route('bophan.destroy', $bophan->MaBP) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
                                         <div class="modal-footer">
-                                            <form action="{{ route('phong.destroy', $phong->MaPhong) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Xóa</button>
-                                            </form>
+                                            <button type="submit" class="btn btn-danger">Xóa</button>
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                @endforeach
-			</tbody>
-			</table>
-			{{-- Phân trang nếu cần --}}
-			<div class="d-flex justify-content-center">
-				{{ $phongs->links('pagination::bootstrap-4') }}
-			</div>
-		</div>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            @if ($bophans->isEmpty())
+                <tr>
+                    <td colspan="4" class="text-center">Không có bộ phận nào.</td>
+                </tr>
+            @endif
+        </tbody>
+        @if($bophans->hasPages())
+            <div class="d-flex justify-content-center">
+                {{ $bophans->links('pagination::bootstrap-4') }}
+            </div>
+        @endif
+        
+	<table>
+	{{-- Phân trang nếu cần --}}
+	<div class="d-flex justify-content-center">
+		{{ $bophans->links('pagination::bootstrap-4') }}
 	</div>
 </div>
 
