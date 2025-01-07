@@ -22,4 +22,10 @@ class PhieuDichVu extends Model
     {
         return $this->hasMany(ChiTietPhieuDichVu::class, 'MaPhieuDV', 'MaPhieuDV');
     }
+
+    public function phieuThue()
+    {
+        return $this->belongsTo(PhieuThue::class, 'MaPT', 'MaPT'); 
+    }
 }
+

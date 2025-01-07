@@ -79,12 +79,13 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('loaiphong.index')}}">Loại phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('bophan.index')}}">Bộ phận</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('nhanvien.index')}}">Nhân viên</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Khách hàng</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('phieuthue.index')}}">Phiếu thuê</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Phiếu dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('chitietphieu.index')}}">Chi tiết phiếu dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('dichvu.index')}}">Dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index')}}">Hoá đơn thanh toán</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('khachhang.index')}}">Khách hàng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('phieudichvu.index')}}">Phiếu dịch vụ</a></li>
+                   
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
