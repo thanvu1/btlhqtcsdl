@@ -73,8 +73,9 @@
                 <!-- Ngày Trả -->
                 <div class="mb-3">
                     <label for="NgayTra" class="form-label">Ngày Trả</label>
-                    <input type="date" class="form-control" id="NgayTra" name="NgayTra" value="{{ $phieuthue->NgayTra }}" required>
+                    <input type="date" class="form-control" id="NgayTra" name="NgayTra" value="{{ $phieuthue->NgayTra }}" required min="{{ $phieuthue->NgayThue }}">
                 </div>
+                
                 <!-- Mã Khách Hàng -->
                 <div class="mb-3">
                     <label for="MaKH" class="form-label">Mã Khách Hàng</label>
@@ -83,8 +84,15 @@
                 <!-- Mã Phòng -->
                 <div class="mb-3">
                     <label for="MaPhong" class="form-label">Mã Phòng</label>
-                    <input type="text" class="form-control" id="MaPhong" name="MaPhong" value="{{ $phieuthue->MaPhong }}" required>
+                    <select class="form-select" id="MaPhong" name="MaPhong" required>
+                        @foreach($phongs as $phong)
+                            <option value="{{ $phong->MaPhong }}" {{ $phong->MaPhong == $phieuthue->MaPhong ? 'selected' : '' }}>
+                                {{ $phong->MaPhong }} - {{ $phong->TenPhong }}
+                            </option>
+                        @endforeach
+                    </select>
                 </div>
+                
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Cập Nhật</button>

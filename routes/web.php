@@ -18,13 +18,14 @@ use App\Http\Controllers\TungProc1Controller;
 use App\Http\Controllers\TungProc2Controller;
 use App\Http\Controllers\TungView1Controller;
 use App\Http\Controllers\TungView2Controller;
-
+use App\Http\Controllers\TungFunctionController;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/thong-ke/phong', [TungProc1Controller::class, 'thongKePhongTheoLoaiGiuong'])->name('phong.tungproc1');
     Route::get('/nhanvien/thongke', [TungProc2Controller::class, 'thongKeNhanVien'])->name('nhanvien.tungproc2');
     Route::get('/phong/controng', [TungView1Controller::class, 'index'])->name('phong.tungview1');
     Route::get('/phieuthue/thongke', [TungView2Controller::class, 'index'])->name('phieuthue.tungview2');
+    Route::get('/hoadonthanhtoan/tongtien', [TungFunctionController::class, 'index'])->name('hoadonthanhtoan.tungfunction');
     Route::resource('hoadonthanhtoan', HoaDonThanhToanController::class);
     Route::resource('loaiphong', LoaiPhongController::class);
     Route::resource('phong', PhongController::class);

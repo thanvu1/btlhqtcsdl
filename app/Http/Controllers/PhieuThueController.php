@@ -7,6 +7,7 @@ use App\Models\Phong;
 use App\Models\KhachHang;
 use App\Models\NhanVien;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PhieuThueController extends Controller
 {
@@ -65,19 +66,25 @@ class PhieuThueController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'MaPhong' => 'required|exists:phong,MaPhong',
-            'MaKH' => 'required|exists:khachhang,MaKH',
             'NgayThue' => 'required|date',
             'NgayTra' => 'required|date|after_or_equal:NgayThue',
-            'GiaMotNgay' => 'required|numeric',
-            'MaNV' => 'nullable|exists:nhanvien,MaNV',
+            'MaKH' => 'required|string',
+            'MaPhong' => 'required|string',
         ]);
 
         $phieuthue = PhieuThue::findOrFail($id);
         $phieuthue->update($request->all());
 
-        return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được cập nhật thành công.');
+        // Lấy lại dữ liệu hoá đơn để đảm bảo trigger đã cập nhật
+        $hoadon = DB::table('HOADONTHANHTOAN')->where('MaPT', $phieuthue->MaPT)->first();
+
+        return redirect()->route('phieuthue.index')
+                        ->with('success', 'Phiếu thuê đã cập nhật thành công.')
+                        ->with('hoadon', $hoadon);
     }
+
+    
+
 
     public function destroy($id)
     {

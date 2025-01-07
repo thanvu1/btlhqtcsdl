@@ -109,81 +109,90 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý phim</h5>
-                        <p class="card-text">Xem, thêm, sửa, xóa thông tin phim.</p>
-                        <a href="" class="btn btn-primary">Quản lý phim</a>
+                        <h5 class="card-title">Quản lý phòng</h5>
+                        <p class="card-text">Xem, thêm, sửa, xóa thông tin phòng.</p>
+                        <a href="{{route('phong.index')}}" class="btn btn-primary">Quản lý phòng</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý hãng phim</h5>
-                        <p class="card-text">Xem, thêm, sửa, xóa thông tin hãng phim.</p>
-                        <a href="" class="btn btn-secondary">Quản lý hãng phim</a>
+                        <h5 class="card-title">Quản lý loại phòng</h5>
+                        <p class="card-text">Xem, thêm, sửa, xóa thông tin loại phòng.</p>
+                        <a href="{{route('loaiphong.index')}}" class="btn btn-secondary">Quản lý loại phòng</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý thể loại phim</h5>
-                        <p class="card-text">Xem, thêm, sửa, xóa thông tin thể loại phim.</p>
-                        <a href="" class="btn btn-info">Quản lý thể loại phim</a>
+                        <h5 class="card-title">Quản lý bộ phận</h5>
+                        <p class="card-text">Xem, thêm, sửa, xóa thông tin bộ phận.</p>
+                        <a href="{{route('bophan.index')}}" class="btn btn-info">Quản lý bộ phận</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý phiếu thanh toán</h5>
-                        <p class="card-text">Xem, thêm, sửa, xóa phiếu thanh toán.</p>
-                        <a href="" class="btn btn-warning">Quản lý phiếu thanh toán</a>
+                        <h5 class="card-title">Quản lý nhân viên</h5>
+                        <p class="card-text">Xem, thêm, sửa, xóa nhân viên.</p>
+                        <a href="{{route('nhanvien.index')}}" class="btn btn-warning">Quản lý nhân viên</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý lịch sử xem</h5>
-                        <p class="card-text">Xem lịch sử xem phim của người dùng.</p>
-                        <a href="" class="btn btn-success">Quản lý lịch sử xem</a>
+                        <h5 class="card-title">Quản lý khách hàng</h5>
+                        <p class="card-text">Xem, thêm, sửa, xóa khách hàng.</p>
+                        <a href="{{route('khachhang.index')}}" class="btn btn-warning">Quản lý khách hàng</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý tài khoản</h5>
-                        <p class="card-text">Xem, thêm, sửa, xóa tài khoản người dùng.</p>
-                        <a href="" class="btn btn-danger">Quản lý tài khoản</a>
+                        <h5 class="card-title">Quản lý phiếu thuê</h5>
+                        <p class="card-text">Xem, thêm, sửa, xóa phiếu thuê.</p>
+                        <a href="{{route('phieuthue.index')}}" class="btn btn-danger">Quản lý phiếu thuê</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý short video</h5>
-                        <p class="card-text">Xem, thêm, sửa, xóa short video.</p>
-                        <a href="" class="btn btn-dark">Quản lý short video</a>
+                        <h5 class="card-title">Quản lý phiếu dịch vụ</h5>
+                        <p class="card-text">Xem, thêm, sửa, xóa phiếu dịch vụ.</p>
+                        <a href="" class="btn btn-dark">Quản lý phiếu dịch vụ</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Quản lý View</h5>
-                        <p class="card-text">Hiển thị view các video mới.</p>
-                        <a href="" class="btn btn-dark">Quản lý View</a>
+                        <h5 class="card-title">Quản lý chi tiết phiếu dịch vụ</h5>
+                        <p class="card-text">Hiển thị chi tiết các phiếu dịch vụ.</p>
+                        <a href="" class="btn btn-dark">Quản lý chi tiết phiếu dịch vụ</a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Thống kê</h5>
-                        <p class="card-text">Xem thống kê lượt xem phim.</p>
-                        <a href="" class="btn btn-info">Xem thống kê</a>
+                        <h5 class="card-title">Dịch vụ</h5>
+                        <p class="card-text">Xem các loại dịch vụ.</p>
+                        <a href="" class="btn btn-info">Xem dịch vụ</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Quản lý hoá đơn</h5>
+                        <p class="card-text">Xem các hoá đơn thanh toán.</p>
+                        <a href="{{route('hoadonthanhtoan.index')}}" class="btn btn-info">Xem hoá đơn</a>
                     </div>
                 </div>
             </div>
