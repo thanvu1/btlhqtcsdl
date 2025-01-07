@@ -77,8 +77,8 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('phong.index') }}">Phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('loaiphong.index')}}">Loại phòng</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Thể loại phim</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Phiếu thanh toán</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('khachhang.index')}}">Khách hàng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('phieudichvu.index')}}">Phiếu dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Lịch sử xem</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Tài khoản</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Short Video</a></li>
