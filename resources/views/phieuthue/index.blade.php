@@ -48,15 +48,23 @@
                             <a href="{{ route('phieuthue.create') }}" class="btn btn-success">
                                 <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
                             </a>
+                            <a href="{{ route('phieuthue.tungview2') }}" class="btn btn-secondary"> <span>Thống kê số phòng cho thuê</span></a>
                         </div>
                     </div>
                 </div>
-
-                @if (session('success'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert" id="success-alert">
+                @if(session('success'))
+                    <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
+                @endif  
+
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
                 @endif
+
+               
 
                 <script>
                     setTimeout(() => {

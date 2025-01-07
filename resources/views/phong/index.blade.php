@@ -258,10 +258,10 @@ table.table .avatar {
 					<a href="{{ route('phong.create') }}" class="btn btn-success me-2 mb-2">
 						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
 					</a>
-					<a href="{{ route('phong.thongke') }}" class="btn btn-primary me-2 mb-2">
+					<a href="{{ route('phong.tungproc1') }}" class="btn btn-primary me-2 mb-2">
 						Xem Thống Kê Phòng
 					</a>
-					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.controng') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
+					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.tungview1') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
 				</div>
 				</div>
 			</div>

@@ -258,7 +258,7 @@ table.table .avatar {
 					<a href="{{ route('nhanvien.create') }}" class="btn btn-success me-2 mb-2">
 						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
 					</a>
-					<a href="" class="btn btn-primary me-2 mb-2">
+					<a href="{{ route('nhanvien.tungproc2') }}" class="btn btn-primary me-2 mb-2">
 						Xem Thống Kê
 					</a>
 					<a href="" class="btn btn-primary me-2 mb-2">

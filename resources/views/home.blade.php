@@ -79,13 +79,13 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('loaiphong.index')}}">Loại phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('bophan.index')}}">Bộ phận</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('nhanvien.index')}}">Nhân viên</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index') }}">Hoá đơn thanh toán</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('phieuthue.index') }}">Phiếu thuê</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Lịch sử xem</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Tài khoản</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Short Video</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">View</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Trang Thống Kê</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Khách hàng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('phieuthue.index')}}">Phiếu thuê</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Phiếu dịch vụ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Chi tiết phiếu dịch vụ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="">Dịch vụ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index')}}">Hoá đơn thanh toán</a></li>
+>>>>>>> origin/TungDoQuang
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

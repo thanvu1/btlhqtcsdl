@@ -166,10 +166,10 @@
                             <h2>Danh Sách Hóa Đơn Thanh Toán</h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="{{ route('home') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span></a>
-                            <a href="{{ route('hoadonthanhtoan.create') }}" class="btn btn-success">
+                            <a href="{{ route('hoadonthanhtoan.create') }}" class="btn btn-success me-2 mb-2">
                                 <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
                             </a>
+                            <a href="{{ route('home') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span></a>
                         </div>
                     </div>
                 </div>
