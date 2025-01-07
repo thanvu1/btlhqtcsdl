@@ -167,8 +167,9 @@
                         </div>
                         <div class="col-sm-6">
                             <a href="{{ route('home') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span></a>
-                            <a href="{{ route('hoadonthanhtoan.create') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Thêm mới</span></a>
-                            
+                            <a href="{{ route('hoadonthanhtoan.create') }}" class="btn btn-success">
+                                <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -213,7 +214,7 @@
                                 <td>{{ $hoadonthanhtoan->NgayLap }}</td>
                                 <td>{{ number_format($hoadonthanhtoan->TongTien, 0, ',', '.') }} VND</td>
                                 <td>
-                                    <a href="{{ route('hoadonthanhtoan.edit', $hoadonthanhtoan->MaHD) }}" class="edit"><i class="material-icons" title="Chỉnh sửa">&#xE254;</i></a>
+                                    {{-- <a href="{{ route('hoadonthanhtoan.edit', $hoadonthanhtoan->MaHD) }}" class="edit"><i class="material-icons" title="Chỉnh sửa">&#xE254;</i></a> --}}
                                     <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $hoadonthanhtoan->MaHD }}">
                                         Xóa
                                     </button>

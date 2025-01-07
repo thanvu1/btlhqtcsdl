@@ -62,7 +62,9 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="contact-form">
             <h1>Chỉnh Sửa Hóa Đơn Thanh Toán</h1>
-            <form action="{{ route('hoadonthanhtoan.update', $hoadon->id) }}" method="POST">
+            {{ dd($hoadon) }}
+            <form action="{{ route('hoadonthanhtoan.update', ['hoadon' => $hoadon->id]) }}" method="POST">
+
                 @csrf
                 @method('PUT')
                 <!-- Mã Hóa Đơn -->
@@ -96,7 +98,19 @@
                     <a href="{{ route('hoadonthanhtoan.index') }}" class="btn btn-secondary">Về</a>
                 </div>
             </form>
+            @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
         </div>
     </div>
 </body>
+
+
 </html>

@@ -74,4 +74,35 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tenKHSelect = document.getElementById('TenKH');
+        const maKHSelect = document.getElementById('MaKH');
+
+        // Đồng bộ Mã Khách Hàng khi chọn Tên Khách Hàng
+        tenKHSelect.addEventListener('change', function () {
+            const selectedTenKH = this.value;
+
+            // Lấy khách hàng tương ứng từ danh sách
+            [...maKHSelect.options].forEach(option => {
+                if (option.text === selectedTenKH) {
+                    maKHSelect.value = option.value;
+                }
+            });
+        });
+
+        // Đồng bộ Tên Khách Hàng khi chọn Mã Khách Hàng
+        maKHSelect.addEventListener('change', function () {
+            const selectedMaKH = this.value;
+
+            // Lấy khách hàng tương ứng từ danh sách
+            [...tenKHSelect.options].forEach(option => {
+                if (option.text === selectedMaKH) {
+                    tenKHSelect.value = option.value;
+                }
+            });
+        });
+    });
+</script>
+
 </html>
