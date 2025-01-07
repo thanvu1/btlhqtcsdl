@@ -79,8 +79,10 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('loaiphong.index')}}">Loại phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Thể loại phim</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Phiếu thanh toán</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Lịch sử xem</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Tài khoản</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index') }}">Hoá đơn thanh toán</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('phieuthue.index') }}">Phiếu thuê</a></li>
+                  
+
                     <li class="nav-item"><a class="nav-link" href="">Short Video</a></li>
                     <li class="nav-item"><a class="nav-link" href="">View</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Trang Thống Kê</a></li>
