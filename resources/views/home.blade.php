@@ -77,19 +77,12 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ route('phong.index') }}">Phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('loaiphong.index')}}">Loại phòng</a></li>
-<<<<<<< HEAD
                     <li class="nav-item"><a class="nav-link" href="{{route('bophan.index')}}">Bộ phận</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('nhanvien.index')}}">Nhân viên</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Lịch sử xem</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Tài khoản</a></li>
-=======
-                    <li class="nav-item"><a class="nav-link" href="">Thể loại phim</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Phiếu thanh toán</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index') }}">Hoá đơn thanh toán</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('phieuthue.index') }}">Phiếu thuê</a></li>
                   
 
->>>>>>> origin/ChungNT
                     <li class="nav-item"><a class="nav-link" href="">Short Video</a></li>
                     <li class="nav-item"><a class="nav-link" href="">View</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('baocao.index') }}">Trang Thống Kê</a></li>
