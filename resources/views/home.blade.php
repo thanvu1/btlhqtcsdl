@@ -85,7 +85,7 @@
                     <li class="nav-item"><a class="nav-link" href="">Chi tiết phiếu dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index')}}">Hoá đơn thanh toán</a></li>
->>>>>>> origin/TungDoQuang
+
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

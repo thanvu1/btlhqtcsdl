@@ -258,6 +258,9 @@ table.table .avatar {
 					<a href="{{ route('phong.create') }}" class="btn btn-success me-2 mb-2">
 						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
 					</a>
+					<a href="{{ route('ChungFunction7.index') }}" class="btn btn-success me-2 mb-2">
+						 <span>Function 7</span>
+					</a>
 					<a href="{{ route('phong.tungproc1') }}" class="btn btn-primary me-2 mb-2">
 						Xem Thống Kê Phòng
 					</a>
