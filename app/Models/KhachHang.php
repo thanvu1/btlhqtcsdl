@@ -12,8 +12,9 @@ class KhachHang extends Model
     protected $table = 'khachhang';
     protected $primaryKey = 'MaKH';
     public $timestamps = false;
-    protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
+   
     public $incrementing = false; // Không tự tăng
+    protected $keyType = 'string';
 
     protected $fillable = ['MaKH', 'HoTen', 'NgaySinh', 'SDT', 'QuocTich'];
 

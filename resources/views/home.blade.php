@@ -86,6 +86,9 @@
                     <li class="nav-item"><a class="nav-link" href="">Dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index')}}">Hoá đơn thanh toán</a></li>
 
+                    <li class="nav-item"><a class="nav-link" href="{{ route('khachhang.index')}}">Khách hàng</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('phieudichvu.index')}}">Phiếu dịch vụ</a></li>
+             
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
