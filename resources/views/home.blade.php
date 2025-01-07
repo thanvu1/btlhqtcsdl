@@ -83,7 +83,7 @@
                     <li class="nav-item"><a class="nav-link" href="">Tài khoản</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Short Video</a></li>
                     <li class="nav-item"><a class="nav-link" href="">View</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Trang Thống Kê</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('baocao.index') }}">Trang Thống Kê</a></li>
                     <li class="nav-item">
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

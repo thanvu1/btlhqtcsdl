@@ -12,6 +12,8 @@ class BoPhan extends Model
     protected $table = 'bophan';
     protected $primaryKey = 'MaBP';
     public $timestamps = false;
+    protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
+    public $incrementing = false; // Không tự tăng
 
     protected $fillable = ['MaBP', 'TenBP', 'MoTa'];
 

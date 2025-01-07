@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Phong;
 use App\Models\LoaiPhong;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PhongController extends Controller
 {
@@ -73,5 +74,38 @@ class PhongController extends Controller
         $phong = Phong::findOrFail($id);
         $phong->delete();
         return redirect()->route('phong.index')->with('success', 'Phòng được xóa thành công.');
+    }
+
+    public function thongKeSoLuongPhongTheoTinhTrang()
+    {
+        try {
+            // Gọi stored procedure
+            $data = DB::select('EXEC sp_ThongKeSoLuongPhongTheoTinhTrang');
+
+            // Trả về view cùng với dữ liệu
+            return view('phong.thongke-tinhtrang', compact('data'));
+        } catch (\Exception $e) {
+            return view('phong.thongke-tinhtrang', ['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
+        }
+    }
+
+    public function soLanSuDung(Request $request)
+    {
+        $request->validate([
+            'thang' => 'required|integer|min:1|max:12',
+            'nam' => 'required|integer|min:2000|max:2100',
+        ]);
+
+        $thang = $request->input('thang');
+        $nam = $request->input('nam');
+
+        try {
+            // Gọi hàm SQL fn_SoLanPhongDuocSuDungTrongThang
+            $soLanSuDung = DB::select('SELECT * FROM fn_SoLanPhongDuocSuDungTrongThang(?, ?)', [$nam, $thang]);
+
+            return view('phong.solan', compact('soLanSuDung', 'thang', 'nam'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
+        }
     }
 }

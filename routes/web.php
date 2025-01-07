@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\vDoanhThuTheoNgayController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminSetupController;
@@ -15,6 +16,10 @@ use App\Http\Controllers\PhieuDichVuController;
 use App\Http\Controllers\ChiTietPhieuDichVuController;
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/phong/thongke-tinhtrang', [PhongController::class, 'thongKeSoLuongPhongTheoTinhTrang'])->name('phong.thongke-tinhtrang');
+    Route::get('/phong/solan', [PhongController::class, 'soLanSuDung'])->name('phong.solan');
+    // Báo cáo doanh thu theo ngày
+    Route::get('/baocao', [vDoanhThuTheoNgayController::class, 'index'])->name('baocao.index');
     Route::resource('loaiphong', LoaiPhongController::class);
     Route::resource('phong', PhongController::class);
     Route::resource('khachhang', KhachHangController::class);
