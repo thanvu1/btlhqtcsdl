@@ -19,17 +19,17 @@ use App\Http\Controllers\TungProc1Controller;
 use App\Http\Controllers\TungViewController;
 use App\Http\Controllers\DanhSachPhieuThueController;
 use App\Http\Controllers\TvuController;
+use App\Http\Controllers\TungProc2Controller;
+use App\Http\Controllers\TungView1Controller;
+use App\Http\Controllers\TungView2Controller;
+use App\Http\Controllers\TungFunctionController;
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/tvu/thong-ke-doanh-thu', [TvuController::class, 'thongKeDoanhThu'])->name('tvu.thongkedoanhthutheothangnam');
-    Route::get('/tvu/kiem-tra-tinh-trang', [TvuController::class, 'kiemTraTinhTrangPhong'])->name('tvu.kiem-tra-tinh-trang');
-    Route::get('/tvu', [TvuController::class, 'index'])->name('tvu.solanphongduocsudungtrongthang');
-    Route::get('/phieuthue/vw_dspt', [DanhSachPhieuThueController::class, 'index'])->name('phieuthue.vw_dspt');
-    Route::get('/phong/thongke-tinhtrang', [PhongController::class, 'thongKeSoLuongPhongTheoTinhTrang'])->name('phong.thongke-tinhtrang');
-    // Báo cáo doanh thu theo ngày
-    Route::get('/baocao', [vDoanhThuTheoNgayController::class, 'index'])->name('baocao.index');
-    Route::get('/phong/controng', [TungViewController::class, 'index'])->name('phong.controng');
-    Route::get('/thong-ke/phong', [TungProc1Controller::class, 'thongKePhongTheoLoaiGiuong'])->name('phong.thongke');
+    Route::get('/thong-ke/phong', [TungProc1Controller::class, 'thongKePhongTheoLoaiGiuong'])->name('phong.tungproc1');
+    Route::get('/nhanvien/thongke', [TungProc2Controller::class, 'thongKeNhanVien'])->name('nhanvien.tungproc2');
+    Route::get('/phong/controng', [TungView1Controller::class, 'index'])->name('phong.tungview1');
+    Route::get('/phieuthue/thongke', [TungView2Controller::class, 'index'])->name('phieuthue.tungview2');
+    Route::get('/hoadonthanhtoan/tongtien', [TungFunctionController::class, 'index'])->name('hoadonthanhtoan.tungfunction');
     Route::resource('hoadonthanhtoan', HoaDonThanhToanController::class);
     Route::resource('loaiphong', LoaiPhongController::class);
     Route::resource('phong', PhongController::class);

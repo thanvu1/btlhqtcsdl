@@ -9,6 +9,6 @@ class TungProc1Controller extends Controller
     public function thongKePhongTheoLoaiGiuong()
     {
         $results = DB::select('EXEC ThongKePhongTheoLoaiGiuong');
-        return view('phong.thongke', compact('results'));
+        return view('phong.tungproc1', compact('results'));
     }
 }

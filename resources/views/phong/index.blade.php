@@ -268,6 +268,11 @@ table.table .avatar {
 						<i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
 					</a>
 					</div>
+					<a href="{{ route('phong.tungproc1') }}" class="btn btn-primary me-2 mb-2">
+						Xem Thống Kê Phòng
+					</a>
+					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.tungview1') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
+				</div>
 				</div>
 			</div>
 

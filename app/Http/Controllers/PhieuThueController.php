@@ -7,6 +7,7 @@ use App\Models\Phong;
 use App\Models\KhachHang;
 use App\Models\NhanVien;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PhieuThueController extends Controller
 {
@@ -23,27 +24,29 @@ class PhieuThueController extends Controller
         $nhanviens = NhanVien::all();
         return view('phieuthue.create', compact('phongs', 'khachhangs', 'nhanviens'));
     }
-
+    //Tùng Trigger1 : Cập nhật trạng thái phòng khi thêm phiếu thuê mới
     public function store(Request $request)
     {
-        $request->validate([
-            'MaPhong' => 'required|exists:phong,MaPhong',
-            'MaKH' => 'required|exists:khachhang,MaKH',
-            'NgayThue' => 'required|date',
-            'NgayTra' => 'required|date|after_or_equal:NgayThue',
-            'GiaMotNgay' => 'required|numeric',
-            'MaNV' => 'nullable|exists:nhanvien,MaNV',
-        ]);
+        try {
+            // Thêm phiếu thuê mới vào bảng PHIEUTHUE
+            $phieuThue = PhieuThue::create($request->all());
 
-        PhieuThue::create($request->all());
+            // Kiểm tra trạng thái của phòng sau khi trigger chạy
+            $phong = Phong::where('MaPhong', $request->MaPhong)->first();
 
-        // Cập nhật tình trạng phòng
-        $phong = Phong::findOrFail($request->MaPhong);
-        $phong->TinhTrang = 'Đã thuê';
-        $phong->save();
-
-        return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được thêm thành công.');
+            if ($phong && $phong->TinhTrang === 'Đã thuê') {
+                // Trigger đã hoạt động, quay về trang index với thông báo thành công
+                return redirect()->route('phieuthue.index')->with('success', 'Phiếu thuê đã được thêm thành công và trigger đã hoạt động!');
+            } else {
+                // Trigger không hoạt động, quay về trang index với cảnh báo
+                return redirect()->route('phieuthue.index')->with('error', 'Phiếu thuê đã được thêm nhưng trigger không cập nhật trạng thái phòng.');
+            }
+        } catch (\Exception $e) {
+            // Xử lý lỗi nếu có, quay về trang index với thông báo lỗi
+            return redirect()->route('phieuthue.index')->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
+        }
     }
+
 
     public function show($id)
     {
@@ -53,13 +56,10 @@ class PhieuThueController extends Controller
 
     public function edit($id)
     {
-        $phieuthue = PhieuThue::findOrFail($id); // Lấy phiếu thuê theo ID
-        $phongs = Phong::where('TinhTrang', 'Còn trống')
-            ->orWhere('MaPhong', $phieuthue->MaPhong) // Bao gồm phòng hiện tại nếu đã thuê
-            ->get();
+        $phieuthue = PhieuThue::findOrFail($id);
+        $phongs = Phong::where('TinhTrang', 'Còn trống')->orWhere('MaPhong', $phieuthue->MaPhong)->get();
         $khachhangs = KhachHang::all();
         $nhanviens = NhanVien::all();
-
         return view('phieuthue.edit', compact('phieuthue', 'phongs', 'khachhangs', 'nhanviens'));
     }
 
@@ -68,41 +68,47 @@ class PhieuThueController extends Controller
         $request->validate([
             'NgayThue' => 'required|date',
             'NgayTra' => 'required|date|after_or_equal:NgayThue',
-            'MaKH' => 'required|exists:khachhang,MaKH',
-            'MaPhong' => 'required|exists:phong,MaPhong',
+            'MaKH' => 'required|string',
+            'MaPhong' => 'required|string',
         ]);
 
         $phieuthue = PhieuThue::findOrFail($id);
+        $phieuthue->update($request->all());
 
-        try {
-            // Kiểm tra nếu phòng thay đổi
-            if ($phieuthue->MaPhong !== $request->MaPhong) {
-                // Đánh dấu phòng cũ là "Còn trống"
-                Phong::where('MaPhong', $phieuthue->MaPhong)->update(['TinhTrang' => 'Còn trống']);
-                // Đánh dấu phòng mới là "Đã thuê"
-                Phong::where('MaPhong', $request->MaPhong)->update(['TinhTrang' => 'Đã thuê']);
-            }
+        // Lấy lại dữ liệu hoá đơn để đảm bảo trigger đã cập nhật
+        $hoadon = DB::table('HOADONTHANHTOAN')->where('MaPT', $phieuthue->MaPT)->first();
 
-            // Cập nhật phiếu thuê
-            $phieuthue->update($request->only(['NgayThue', 'NgayTra', 'MaKH', 'MaPhong']));
-
-            return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được cập nhật thành công.');
-        } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'Có lỗi xảy ra: ' . $e->getMessage()]);
-        }
+        return redirect()->route('phieuthue.index')
+                        ->with('success', 'Phiếu thuê đã cập nhật thành công.')
+                        ->with('hoadon', $hoadon);
     }
+
+    
+
 
     public function destroy($id)
     {
-        $phieuthue = PhieuThue::findOrFail($id);
+        try {
+            // Tìm phiếu thuê cần xóa
+            $phieuThue = PhieuThue::findOrFail($id);
 
-        // Cập nhật tình trạng phòng
-        $phong = Phong::findOrFail($phieuthue->MaPhong);
-        $phong->TinhTrang = 'Còn trống';
-        $phong->save();
+            // Xóa phiếu thuê
+            $phieuThue->delete();
 
-        $phieuthue->delete();
-        return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được xóa thành công.');
+            // Kiểm tra trạng thái phòng sau khi trigger chạy
+            $phong = Phong::where('MaPhong', $phieuThue->MaPhong)->first();
+
+            if ($phong && $phong->TinhTrang === 'Còn Trống') {
+                // Trigger đã hoạt động, quay lại trang index với thông báo thành công
+                return redirect()->route('phieuthue.index')->with('success', 'Phiếu thuê đã được hủy thành công và trigger đã cập nhật trạng thái phòng.');
+            } else {
+                // Trigger không hoạt động như mong đợi
+                return redirect()->route('phieuthue.index')->with('error', 'Phiếu thuê đã được hủy nhưng trạng thái phòng chưa được cập nhật.');
+            }
+        } catch (\Exception $e) {
+            // Xử lý lỗi nếu có
+            return redirect()->route('phieuthue.index')->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
+        }
     }
 }
 
