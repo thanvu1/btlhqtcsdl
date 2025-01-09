@@ -25,6 +25,13 @@ use App\Http\Controllers\TungView2Controller;
 use App\Http\Controllers\TungFunctionController;
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/tvu/thong-ke-doanh-thu', [TvuController::class, 'thongKeDoanhThu'])->name('tvu.thongkedoanhthutheothangnam');
+    Route::get('/tvu/kiem-tra-tinh-trang', [TvuController::class, 'kiemTraTinhTrangPhong'])->name('tvu.kiem-tra-tinh-trang');
+    Route::get('/tvu', [TvuController::class, 'index'])->name('tvu.solanphongduocsudungtrongthang');
+    Route::get('/phieuthue/vw_dspt', [DanhSachPhieuThueController::class, 'index'])->name('phieuthue.vw_dspt');
+    Route::get('/phong/thongke-tinhtrang', [PhongController::class, 'thongKeSoLuongPhongTheoTinhTrang'])->name('phong.thongke-tinhtrang');
+    // Báo cáo doanh thu theo ngày
+    Route::get('/baocao', [vDoanhThuTheoNgayController::class, 'index'])->name('baocao.index');
     Route::get('/thong-ke/phong', [TungProc1Controller::class, 'thongKePhongTheoLoaiGiuong'])->name('phong.tungproc1');
     Route::get('/nhanvien/thongke', [TungProc2Controller::class, 'thongKeNhanVien'])->name('nhanvien.tungproc2');
     Route::get('/phong/controng', [TungView1Controller::class, 'index'])->name('phong.tungview1');
