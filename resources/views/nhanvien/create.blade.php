@@ -77,7 +77,7 @@
                         <button type="submit" class="btn btn-primary">
                             <i class="bi bi-save"></i> Lưu
                         </button>
-                        <a href="{{ route('bophan.index') }}" class="btn btn-secondary">
+                        <a href="{{ route('nhanvien.index') }}" class="btn btn-secondary">
                             <i class="bi bi-arrow-left"></i> Về
                         </a>
                     </div>

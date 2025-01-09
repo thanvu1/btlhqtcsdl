@@ -17,33 +17,84 @@ class PhieuThueController extends Controller
         return view('phieuthue.index', compact('phieuthues'));
     }
 
+    // public function create()
+    // {
+    //     $phongs = Phong::where('TinhTrang', 'Còn trống')->get();
+    //     $khachhangs = KhachHang::all();
+    //     $nhanviens = NhanVien::all();
+    //     return view('phieuthue.create', compact('phongs', 'khachhangs', 'nhanviens'));
+    // }
+
     public function create()
-    {
-        $phongs = Phong::where('TinhTrang', 'Còn trống')->get();
-        $khachhangs = KhachHang::all();
-        $nhanviens = NhanVien::all();
-        return view('phieuthue.create', compact('phongs', 'khachhangs', 'nhanviens'));
-    }
+        {
+            $phongs = DB::table('PHONG')
+                ->join('LOAIPHONG', 'PHONG.MaLP', '=', 'LOAIPHONG.MaLP')
+                ->where('PHONG.TinhTrang', 'Còn trống')
+                ->select('PHONG.MaPhong', 'LOAIPHONG.DonGia')
+                ->get();
+
+            $khachhangs = KhachHang::all();
+            $nhanviens = NhanVien::all();
+
+            return view('phieuthue.create', compact('phongs', 'khachhangs', 'nhanviens'));
+        }
+
     //Tùng Trigger1 : Cập nhật trạng thái phòng khi thêm phiếu thuê mới
+    // public function store(Request $request)
+    // {
+    //     try {
+    //         // Thêm phiếu thuê mới vào bảng PHIEUTHUE
+    //         $phieuThue = PhieuThue::create($request->all());
+
+    //         // Kiểm tra trạng thái của phòng sau khi trigger chạy
+    //         $phong = Phong::where('MaPhong', $request->MaPhong)->first();
+
+    //         if ($phong && $phong->TinhTrang === 'Đã thuê') {
+    //             // Trigger đã hoạt động, quay về trang index với thông báo thành công
+    //             return redirect()->route('phieuthue.index')->with('success', 'Phiếu thuê đã được thêm thành công và trigger đã hoạt động!');
+    //         } else {
+    //             // Trigger không hoạt động, quay về trang index với cảnh báo
+    //             return redirect()->route('phieuthue.index')->with('error', 'Phiếu thuê đã được thêm nhưng trigger không cập nhật trạng thái phòng.');
+    //         }
+    //     } catch (\Exception $e) {
+    //         // Xử lý lỗi nếu có, quay về trang index với thông báo lỗi
+    //         return redirect()->route('phieuthue.index')->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
+    //     }
+    // }
     public function store(Request $request)
     {
+        $request->validate([
+            'MaPT' => 'required|string|unique:PHIEUTHUE,MaPT|max:10',
+            'MaPhong' => 'required|string|exists:PHONG,MaPhong',
+            'MaKH' => 'required|string|exists:KHACHHANG,MaKH',
+            'NgayThue' => 'required|date',
+            'NgayTra' => 'required|date|after_or_equal:NgayThue',
+        ]);
+
+        DB::beginTransaction();
+
         try {
-            // Thêm phiếu thuê mới vào bảng PHIEUTHUE
-            $phieuThue = PhieuThue::create($request->all());
+            // Lấy giá mỗi ngày từ LOAIPHONG qua PHONG
+            $giaMotNgay = DB::table('PHONG')
+                ->join('LOAIPHONG', 'PHONG.MaLP', '=', 'LOAIPHONG.MaLP')
+                ->where('PHONG.MaPhong', $request->MaPhong)
+                ->value('LOAIPHONG.DonGia');
 
-            // Kiểm tra trạng thái của phòng sau khi trigger chạy
-            $phong = Phong::where('MaPhong', $request->MaPhong)->first();
-
-            if ($phong && $phong->TinhTrang === 'Đã thuê') {
-                // Trigger đã hoạt động, quay về trang index với thông báo thành công
-                return redirect()->route('phieuthue.index')->with('success', 'Phiếu thuê đã được thêm thành công và trigger đã hoạt động!');
-            } else {
-                // Trigger không hoạt động, quay về trang index với cảnh báo
-                return redirect()->route('phieuthue.index')->with('error', 'Phiếu thuê đã được thêm nhưng trigger không cập nhật trạng thái phòng.');
+            if (!$giaMotNgay) {
+                return redirect()->route('phieuthue.create')->with('error', 'Không tìm thấy giá phòng.');
             }
+
+            // Tạo phiếu thuê mới
+            $requestData = $request->all();
+            $requestData['GiaMotNgay'] = $giaMotNgay;
+            PhieuThue::create($requestData);
+
+            DB::commit();
+
+            return redirect()->route('phieuthue.index')->with('success', 'Phiếu thuê đã được thêm thành công!');
         } catch (\Exception $e) {
-            // Xử lý lỗi nếu có, quay về trang index với thông báo lỗi
-            return redirect()->route('phieuthue.index')->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
+            DB::rollBack();
+            return redirect()->route('phieuthue.create')->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
         }
     }
 
@@ -82,7 +133,20 @@ class PhieuThueController extends Controller
                         ->with('success', 'Phiếu thuê đã cập nhật thành công.')
                         ->with('hoadon', $hoadon);
     }
+    public function getGiaMotNgay(Request $request)
+    {
+        $phong = Phong::where('MaPhong', $request->MaPhong)->first();
 
+        if ($phong) {
+            return response()->json([
+                'GiaMotNgay' => $phong->GiaMotNgay
+            ], 200);
+        }
+
+        return response()->json([
+            'error' => 'Phòng không tồn tại hoặc không có giá.'
+        ], 404);
+    }
     
 
 

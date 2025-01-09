@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Films</title>
+<title>Quản lý bộ phận</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -261,12 +261,7 @@ table.table .avatar {
 					<a href="" class="btn btn-primary me-2 mb-2">
 						Xem Thống Kê
 					</a>
-					<a href="" class="btn btn-primary me-2 mb-2">
-						Xem Phim Sắp Chiếu
-					</a>
-					<a href="" class="btn btn-secondary mb-2">
-						<i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
-					</a>
+					
 				</div>
 				</div>
 			</div>
