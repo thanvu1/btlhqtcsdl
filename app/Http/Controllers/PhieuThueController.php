@@ -62,22 +62,51 @@ class PhieuThueController extends Controller
         return view('phieuthue.edit', compact('phieuthue', 'phongs', 'khachhangs', 'nhanviens'));
     }
 
+    // public function update(Request $request, $id)
+    // {
+    //     $request->validate([
+    //         'MaPhong' => 'required|exists:phong,MaPhong',
+    //         'MaKH' => 'required|exists:khachhang,MaKH',
+    //         'NgayThue' => 'required|date',
+    //         'NgayTra' => 'required|date|after_or_equal:NgayThue',
+    //         'GiaMotNgay' => 'required|numeric',
+    //         'MaNV' => 'nullable|exists:nhanvien,MaNV',
+    //     ]);
+
+    //     $phieuthue = PhieuThue::findOrFail($id);
+    //     $phieuthue->update($request->all());
+
+    //     return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được cập nhật thành công.');
+    // }
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'MaPhong' => 'required|exists:phong,MaPhong',
-            'MaKH' => 'required|exists:khachhang,MaKH',
-            'NgayThue' => 'required|date',
-            'NgayTra' => 'required|date|after_or_equal:NgayThue',
-            'GiaMotNgay' => 'required|numeric',
-            'MaNV' => 'nullable|exists:nhanvien,MaNV',
-        ]);
+{
+    // Xác thực dữ liệu từ form
+    $request->validate([
+        'MaPhong' => 'required|exists:phong,MaPhong', // Kiểm tra MaPhong tồn tại trong bảng phong
+        'MaKH' => 'required|exists:khachhang,MaKH', // Kiểm tra MaKH tồn tại trong bảng khachhang
+        'NgayThue' => 'required|date', // Kiểm tra ngày thuê hợp lệ
+        'NgayTra' => 'required|date|after_or_equal:NgayThue', // Kiểm tra ngày trả không nhỏ hơn ngày thuê
+        'GiaMotNgay' => 'required|numeric', // Kiểm tra giá mỗi ngày là số
+        'MaNV' => 'nullable|exists:nhanvien,MaNV', // Kiểm tra MaNV nếu có
+    ]);
 
-        $phieuthue = PhieuThue::findOrFail($id);
-        $phieuthue->update($request->all());
+    // Lấy dữ liệu phiếu thuê theo MaPT
+    $phieuthue = PhieuThue::findOrFail($id);
 
-        return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được cập nhật thành công.');
-    }
+    // Cập nhật thông tin phiếu thuê
+    $phieuthue->MaPhong = $request->MaPhong;
+    $phieuthue->MaKH = $request->MaKH;
+    $phieuthue->NgayThue = $request->NgayThue;
+    $phieuthue->NgayTra = $request->NgayTra;
+    $phieuthue->GiaMotNgay = $request->GiaMotNgay;
+    $phieuthue->MaNV = $request->MaNV; // Chỉ cập nhật nếu có
+
+    // Lưu thông tin đã cập nhật
+    $phieuthue->save();
+
+    // Chuyển hướng về trang index với thông báo thành công
+    return redirect()->route('phieuthue.index')->with('success', 'Phiếu Thuê được cập nhật thành công.');
+}
 
     public function destroy($id)
     {

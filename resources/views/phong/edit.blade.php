@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh Sửa Phòng</title>
+    <title>Chỉnh Sửa Phiếu Thuê</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -56,49 +56,49 @@
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="contact-form">
-            <h1>Chỉnh Sửa Phòng</h1>
-            <form action="{{ route('phong.update', $phong->MaPhong) }}" method="POST">
+            <h1>Chỉnh Sửa Phiếu Thuê</h1>
+            <form action="{{ route('phieuthue.update', $phieuthue->MaPT) }}" method="POST">
                 @csrf
                 @method('PUT')
+                <!-- Mã Phiếu Thuê -->
+                <div class="mb-3">
+                    <label for="MaPT" class="form-label">Mã Phiếu Thuê</label>
+                    <input type="text" class="form-control" id="MaPT" name="MaPT" value="{{ $phieuthue->MaPT }}" readonly>
+                </div>
+                <!-- Ngày Thuê -->
+                <div class="mb-3">
+                    <label for="NgayThue" class="form-label">Ngày Thuê</label>
+                    <input type="date" class="form-control" id="NgayThue" name="NgayThue" value="{{ old('NgayThue', $phieuthue->NgayThue) }}" required>
+                </div>
+                <!-- Ngày Trả -->
+                <div class="mb-3">
+                    <label for="NgayTra" class="form-label">Ngày Trả</label>
+                    <input type="date" class="form-control" id="NgayTra" name="NgayTra" value="{{ old('NgayTra', $phieuthue->NgayTra) }}" required>
+                </div>
+                <!-- Mã Khách Hàng -->
+                <div class="mb-3">
+                    <label for="MaKH" class="form-label">Mã Khách Hàng</label>
+                    <input type="text" class="form-control" id="MaKH" name="MaKH" value="{{ old('MaKH', $phieuthue->MaKH) }}" required>
+                </div>
                 <!-- Mã Phòng -->
                 <div class="mb-3">
                     <label for="MaPhong" class="form-label">Mã Phòng</label>
-                    <input type="text" class="form-control" id="MaPhong" name="MaPhong" value="{{ $phong->MaPhong }}" readonly>
+                    <input type="text" class="form-control" id="MaPhong" name="MaPhong" value="{{ old('MaPhong', $phieuthue->MaPhong) }}" required>
                 </div>
-                <!-- Tên Phòng -->
+                <!-- Giá Một Ngày -->
                 <div class="mb-3">
-                    <label for="TenPhong" class="form-label">Tên Phòng</label>
-                    <input type="text" class="form-control" id="TenPhong" name="TenPhong" value="{{ $phong->TenPhong }}" required>
+                    <label for="GiaMotNgay" class="form-label">Giá Một Ngày</label>
+                    <input type="number" class="form-control" id="GiaMotNgay" name="GiaMotNgay" value="{{ old('GiaMotNgay', $phieuthue->GiaMotNgay) }}" required>
                 </div>
-                <!-- Tình Trạng -->
+                <!-- Mã Nhân Viên -->
                 <div class="mb-3">
-                    <label for="TinhTrang" class="form-label">Tình Trạng</label>
-                    <select class="form-select" id="TinhTrang" name="TinhTrang" required>
-                        <option value="Còn trống" {{ $phong->TinhTrang == 'Còn trống' ? 'selected' : '' }}>Còn trống</option>
-                        <option value="Đã thuê" {{ $phong->TinhTrang == 'Đã thuê' ? 'selected' : '' }}>Đã thuê</option>
-                        <option value="Sửa chữa" {{ $phong->TinhTrang == 'Sửa chữa' ? 'selected' : '' }}>Sửa chữa</option>
-                    </select>
-                </div>
-                <!-- Loại Phòng -->
-                <div class="mb-3">
-                    <label for="MaLP" class="form-label">Loại Phòng</label>
-                    <select class="form-select" id="MaLP" name="MaLP" required>
-                        @foreach ($loaiphongs as $loaiphong)
-                            <option value="{{ $loaiphong->MaLP }}" {{ $phong->MaLP == $loaiphong->MaLP ? 'selected' : '' }}>
-                                {{ $loaiphong->TenLP }} - {{ $loaiphong->LoaiGiuong }} - {{ number_format($loaiphong->DonGia, 0, ',', '.') }} VND
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-                <!-- Ghi Chú -->
-                <div class="mb-3">
-                    <label for="GhiChu" class="form-label">Ghi Chú</label>
-                    <textarea class="form-control" id="GhiChu" name="GhiChu" rows="3">{{ $phong->GhiChu }}</textarea>
+                    <label for="MaNV" class="form-label">Mã Nhân Viên</label>
+                    <input type="text" class="form-control" id="MaNV" name="MaNV" value="{{ old('MaNV', $phieuthue->MaNV) }}">
                 </div>
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                    <a href="{{ route('phong.index') }}" class="btn btn-secondary">Về</a>
+                    <a href="{{ route('phieuthue.index') }}" class="btn btn-secondary">Về</a>
                 </div>
             </form>
         </div>

@@ -79,9 +79,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('loaiphong.index')}}">Loại phòng</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('bophan.index')}}">Bộ phận</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{route('nhanvien.index')}}">Nhân viên</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Khách hàng</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('phieuthue.index')}}">Phiếu thuê</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Phiếu dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Chi tiết phiếu dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Dịch vụ</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('hoadonthanhtoan.index')}}">Hoá đơn thanh toán</a></li>

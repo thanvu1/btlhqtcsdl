@@ -35,8 +35,8 @@
             <button type="submit" class="btn btn-primary">Xem Báo Cáo</button>
         </div>
         <div class="col-md-2 d-flex align-items-end">
-            <!-- Nút Refresh -->
-            <button type="button" class="btn btn-secondary" onclick="window.location.reload()">Làm Mới</button>
+            {{-- <!-- Nút Refresh -->
+            <button type="button" class="btn btn-secondary" onclick="window.location.reload()">Làm Mới</button> --}}
         </div>
     </div>
 </form>

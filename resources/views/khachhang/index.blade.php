@@ -257,6 +257,9 @@ table.table .avatar {
 					    <a href="{{ route('khachhang.create') }}" class="btn btn-success me-2 mb-2">
 						    <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
 					    </a>
+						<a href="{{ route('ChungProc8.index') }}" class="btn btn-success me-2 mb-2">
+						    <span>Proc 8</span>
+					    </a>
 				    </div>
 				</div>
 			</div>

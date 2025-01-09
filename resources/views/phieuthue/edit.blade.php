@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh Sửa Phiếu Thuê</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Chỉnh sửa Phiếu Thuê</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <style>
         body {
             color: #333;
@@ -54,44 +53,38 @@
     </style>
 </head>
 <body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="contact-form">
-            <h1>Chỉnh Sửa Phiếu Thuê</h1>
-            <form action="{{ route('phieuthue.update', $phieuthue->MaPT) }}" method="POST">
-                @csrf
-                @method('PUT')
-                <!-- Mã Phiếu Thuê -->
-                <div class="mb-3">
-                    <label for="MaPT" class="form-label">Mã Phiếu Thuê</label>
-                    <input type="text" class="form-control" id="MaPT" name="MaPT" value="{{ $phieuthue->MaPT }}" readonly>
-                </div>
-                <!-- Ngày Thuê -->
-                <div class="mb-3">
-                    <label for="NgayThue" class="form-label">Ngày Thuê</label>
-                    <input type="date" class="form-control" id="NgayThue" name="NgayThue" value="{{ $phieuthue->NgayThue }}" required>
-                </div>
-                <!-- Ngày Trả -->
-                <div class="mb-3">
-                    <label for="NgayTra" class="form-label">Ngày Trả</label>
-                    <input type="date" class="form-control" id="NgayTra" name="NgayTra" value="{{ $phieuthue->NgayTra }}" required>
-                </div>
-                <!-- Mã Khách Hàng -->
-                <div class="mb-3">
-                    <label for="MaKH" class="form-label">Mã Khách Hàng</label>
-                    <input type="text" class="form-control" id="MaKH" name="MaKH" value="{{ $phieuthue->MaKH }}" required>
-                </div>
-                <!-- Mã Phòng -->
-                <div class="mb-3">
-                    <label for="MaPhong" class="form-label">Mã Phòng</label>
-                    <input type="text" class="form-control" id="MaPhong" name="MaPhong" value="{{ $phieuthue->MaPhong }}" required>
-                </div>
-                <!-- Nút hành động -->
-                <div class="d-flex justify-content-between">
-                    <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                    <a href="{{ route('phieuthue.index') }}" class="btn btn-secondary">Về</a>
-                </div>
-            </form>
-        </div>
+    <div class="container mt-5">
+        <h1>Chỉnh sửa Phiếu Thuê</h1>
+        <form action="{{ route('phieuthue.update', $phieuthue->MaPT) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="form-group">
+                <label for="MaPT">Mã Phiếu Thuê:</label>
+                <input type="text" class="form-control" id="MaPT" name="MaPT" value="{{ $phieuthue->MaPT }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="MaKH">Mã Khách Hàng:</label>
+                <input type="text" class="form-control" id="MaKH" name="MaKH" value="{{ $phieuthue->MaKH }}" required>
+            </div>
+            <div class="form-group">
+                <label for="MaPhong">Mã Phòng:</label>
+                <input type="text" class="form-control" id="MaPhong" name="MaPhong" value="{{ $phieuthue->MaPhong }}" required>
+            </div>
+            <div class="form-group">
+                <label for="NgayThue">Ngày Thuê:</label>
+                <input type="date" class="form-control" id="NgayThue" name="NgayThue" value="{{ $phieuthue->NgayThue }}" required>
+            </div>
+            <div class="form-group">
+                <label for="NgayTra">Ngày Trả:</label>
+                <input type="date" class="form-control" id="NgayTra" name="NgayTra" value="{{ $phieuthue->NgayTra }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <a href="{{ route('phieuthue.index') }}" class="btn btn-secondary">Hủy</a>
+        </form>
     </div>
+
+    <!-- Liên kết với JS (Bootstrap và jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

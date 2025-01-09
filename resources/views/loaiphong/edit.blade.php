@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh Sửa Hóa Đơn Thanh Toán</title>
+    <title>Chỉnh Sửa Loại Phòng</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -17,7 +17,7 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
+            max-width: 500px;
             margin: auto;
         }
         .contact-form h1 {
@@ -61,39 +61,37 @@
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="contact-form">
-            <h1>Chỉnh Sửa Hóa Đơn Thanh Toán</h1>
-            <form action="{{ route('hoadonthanhtoan.update', $hoadon->id) }}" method="POST">
+            <h1>Chỉnh Sửa Loại Phòng</h1>
+            <form action="{{ route('loaiphong.update', $loaiphong->MaLP) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <!-- Mã Hóa Đơn -->
+                <!-- Mã Loại Phòng -->
                 <div class="mb-3">
-                    <label for="id" class="form-label">Mã Hóa Đơn</label>
-                    <input type="text" class="form-control" id="id" name="id" value="{{ $hoadon->id }}" readonly>
+                    <label for="MaLP" class="form-label">Mã Loại Phòng</label>
+                    <input type="text" class="form-control" id="MaLP" name="MaLP" value="{{ $loaiphong->MaLP }}" readonly>
                 </div>
-                <!-- Mã Khách Hàng -->
+                <!-- Tên Loại Phòng -->
                 <div class="mb-3">
-                    <label for="maKH" class="form-label">Mã Khách Hàng</label>
-                    <input type="text" class="form-control" id="maKH" name="maKH" value="{{ $hoadon->maKH }}" required>
+                    <label for="TenLP" class="form-label">Tên Loại Phòng</label>
+                    <input type="text" class="form-control" id="TenLP" name="TenLP" value="{{ $loaiphong->TenLP }}" required>
                 </div>
-                <!-- Mã Phiếu Thu -->
+                <!-- Loại Giường -->
                 <div class="mb-3">
-                    <label for="maPT" class="form-label">Mã Phiếu Thu</label>
-                    <input type="text" class="form-control" id="maPT" name="maPT" value="{{ $hoadon->maPT }}" required>
+                    <label for="LoaiGiuong" class="form-label">Loại Giường</label>
+<select class="form-select" id="LoaiGiuong" name="LoaiGiuong" required>
+                        <option value="Giường Đơn" {{ $loaiphong->LoaiGiuong == 'Giường Đơn' ? 'selected' : '' }}>Giường Đơn</option>
+                        <option value="Giường Đôi" {{ $loaiphong->LoaiGiuong == 'Giường Đôi' ? 'selected' : '' }}>Giường Đôi</option>
+                    </select>
                 </div>
-                <!-- Ngày Thanh Toán -->
+                <!-- Đơn Giá -->
                 <div class="mb-3">
-                    <label for="ngayTT" class="form-label">Ngày Thanh Toán</label>
-                    <input type="date" class="form-control" id="ngayTT" name="ngayTT" value="{{ $hoadon->ngayTT }}" required>
-                </div>
-                <!-- Tổng Tiền -->
-                <div class="mb-3">
-                    <label for="tongTien" class="form-label">Tổng Tiền</label>
-                    <input type="number" class="form-control" id="tongTien" name="tongTien" value="{{ $hoadon->tongTien }}" required>
+                    <label for="DonGia" class="form-label">Đơn Giá</label>
+                    <input type="number" class="form-control" id="DonGia" name="DonGia" value="{{ $loaiphong->DonGia }}" required>
                 </div>
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                    <a href="{{ route('hoadonthanhtoan.index') }}" class="btn btn-secondary">Về</a>
+                    <a href="{{ route('loaiphong.index') }}" class="btn btn-secondary">Về</a>
                 </div>
             </form>
         </div>
