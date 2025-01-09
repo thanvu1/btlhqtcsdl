@@ -9,7 +9,7 @@
 <body>
 <div class="container mt-5">
     <div class="mb-3">
-        <a href="{{ route('phong.index') }}" class="btn btn-secondary">Quay Về Trang Quản Lý Phòng</a>
+        <a href="{{ route('hoadonthanhtoan.index') }}" class="btn btn-secondary">Quay Về Trang Hóa Đơn Thanh Toán</a>
     </div>
 
     <h1 class="text-center mb-4">Thống Kê Doanh Thu</h1>
