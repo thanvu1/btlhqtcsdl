@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Quản lý phòng</title>
-<title>PHÒNG</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<!-- Liên kết Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách khách hàng</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- Liên kết Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
 body {
 	color: #566787;
 	background: #f5f5f5;
@@ -250,30 +248,18 @@ table.table .avatar {
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>PHÒNG</h2>
+						<h2>KHÁCH HÀNG</br></h2>
 					</div>
 					<div class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap">
-					<a href="{{ route('home') }}" class="btn btn-secondary me-2 mb-2">
-						<i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span>
-					</a>
-					<a href="{{ route('phong.create') }}" class="btn btn-success me-2 mb-2">
-						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
-					</a>
-					<a href="{{ route('phong.thongke-tinhtrang') }}" class="btn btn-primary me-2 mb-2">
-						Xem Thống Kê
-					</a>
-                        <a href="{{ route('tvu.solanphongduocsudungtrongthang') }}" class="btn btn-primary me-2 mb-2">
-                            Số lần sử dụng phòng
-                        </a>
-					<a href="{{ route('tvu.kiem-tra-tinh-trang') }}" class="btn btn-primary mb-2">
-						<span>Kiểm tra tình trạng phòng</span>
-					</a>
-					</div>
-					<a href="{{ route('phong.tungproc1') }}" class="btn btn-primary me-2 mb-2">
-						Xem Thống Kê Phòng
-					</a>
-					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.tungview1') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
-				</div>
+					    <a href="{{ route('home') }}" class="btn btn-secondary me-2 mb-2">
+						    <i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span>
+					    </a>
+					    <a href="{{ route('khachhang.create') }}" class="btn btn-success me-2 mb-2">
+						    <i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
+					    </a>
+						<a href ="{{ route('khachhang.view5') }}" class="btn btn-success me-2 mb-2"><span>Danh sách</span>
+						</a>
+				    </div>
 				</div>
 			</div>
 
@@ -282,61 +268,46 @@ table.table .avatar {
                     {{ session('success') }}
                 </div>
             @endif
-
-            <script>
-                // Tự động ẩn thông báo sau 2.5 giây
-                setTimeout(() => {
-                    const alertElement = document.getElementById('success-alert');
-                    if (alertElement) {
-                        alertElement.classList.add('fade');
-                        setTimeout(() => alertElement.remove(), 500); // Xóa phần tử sau khi animation fade hoàn tất
-                    }
-                }, 2500); // 2500ms = 2.5 giây
-            </script>
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Mã Phòng</th>
-                <th>Tên Phòng</th>
-                <th>Tình Trạng</th>
-                <th>Loại Phòng</th>
-                <th>Loại Giường</th>
-                <th>Đơn Giá</th>
-                <th>Ghi Chú</th>
+                <th>Mã khách hàng</th>
+                <th>Họ và tên</th>
+                <th>Ngày sinh</th>
+                <th>SĐT</th>
+                <th>Quốc tịch</th>
                 <th>Thao Tác</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($phongs as $phong)
+            @foreach ($khachhangs as $khachhang)
                     <tr>
-                        <td>{{ $phong->MaPhong }}</td>
-                        <td>{{ $phong->TenPhong }}</td>
-                        <td>{{ $phong->TinhTrang }}</td>
-                        <td>{{ $phong->loaiPhong->TenLP ?? 'Không xác định' }}</td>
-                        <td>{{ $phong->loaiPhong->LoaiGiuong ?? 'Không xác định' }}</td>
-                        <td>{{ number_format($phong->loaiPhong->DonGia ?? 0, 0, ',', '.') }} VND</td>
-                        <td>{{ $phong->GhiChu }}</td>
+                        <td>{{ $khachhang->MaKH }}</td>
+                        <td>{{ $khachhang->HoTen }}</td>
+                        <td>{{ $khachhang->NgaySinh }}</td>
+                        <td>{{ $khachhang->SDT }}</td>
+                        <td>{{ $khachhang->QuocTich }}</td>
                         <td>
-                            <a href="{{ route('phong.edit', $phong->MaPhong) }}" class="edit" >
+                            <a href="{{ route('khachhang.edit', $khachhang->MaKH) }}" class="edit" >
 								<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
 							</a>
                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $phong->MaPhong }}">Xóa
+                                    data-bs-target="#deleteModal{{ $khachhang->MaKH }}">Xóa
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="deleteModal{{ $phong->MaPhong }}" tabindex="-1"
-                                 aria-labelledby="deleteModalLabel{{ $phong->MaPhong }}" aria-hidden="true">
+                            <div class="modal fade" id="deleteModal{{ $khachhang->MaKH }}" tabindex="-1"
+                                 aria-labelledby="deleteModalLabel{{ $khachhang->MaKH }}" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel{{ $phong->MaPhong }}">Xóa phòng</h5>
+                                            <h5 class="modal-title" id="deleteModalLabel{{ $khachhang->MaKH }}">Xóa khách hàng</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Bạn có chắc chắn muốn xóa phòng <b>{{ $phong->TenPhong }}</b>?
+                                            Bạn có chắc chắn muốn xóa khách hàng <b>{{ $khachhang->HoTen }}</b>?
                                         </div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('phong.destroy', $phong->MaPhong) }}" method="POST">
+                                            <form action="{{ route('khachhang.destroy', $khachhang->MaKH) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Xóa</button>
@@ -353,11 +324,11 @@ table.table .avatar {
 			</table>
 			{{-- Phân trang nếu cần --}}
 			<div class="d-flex justify-content-center">
-				{{ $phongs->links('pagination::bootstrap-4') }}
+				{{ $khachhangs->links('pagination::bootstrap-4') }}
 			</div>
 		</div>
 	</div>
 </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

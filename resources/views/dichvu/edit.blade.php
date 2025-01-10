@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh Sửa Loại Phòng</title>
+    <title>Chỉnh Sửa Dịch Vụ</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
@@ -18,7 +17,7 @@
             padding: 30px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
+            max-width: 600px;
             margin: auto;
         }
         .contact-form h1 {
@@ -62,36 +61,29 @@
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="contact-form">
-            <h1>Chỉnh Sửa Loại Phòng</h1>
-            <form action="{{ route('loaiphong.update', $loaiphong->MaLP) }}" method="POST">
+            <h1>Chỉnh Sửa Dịch Vụ</h1>
+            <form action="{{ route('dichvu.update', $dichvu->MaDV) }}" method="POST">
                 @csrf
                 @method('PUT')
-                <!-- Mã Loại Phòng -->
+                <!-- Mã Dịch Vụ -->
                 <div class="mb-3">
-                    <label for="MaLP" class="form-label">Mã Loại Phòng</label>
-                    <input type="text" class="form-control" id="MaLP" name="MaLP" value="{{ $loaiphong->MaLP }}" readonly>
+                    <label for="MaDV" class="form-label">Mã Dịch Vụ</label>
+                    <input type="text" class="form-control" id="id" name="MaDV" value="{{ $dichvu->MaDV }}" readonly>
                 </div>
-                <!-- Tên Loại Phòng -->
+                <!-- Tên Dịch Vụ -->
                 <div class="mb-3">
-                    <label for="TenLP" class="form-label">Tên Loại Phòng</label>
-                    <input type="text" class="form-control" id="TenLP" name="TenLP" value="{{ $loaiphong->TenLP }}" required>
-                </div>
-                <!-- Loại Giường -->
-                <div class="mb-3">
-                    <label for="LoaiGiuong" class="form-label">Loại Giường</label><select class="form-select" id="LoaiGiuong" name="LoaiGiuong" required>
-                        <option value="Giường Đơn" {{ $loaiphong->LoaiGiuong == 'Giường Đơn' ? 'selected' : '' }}>Giường Đơn</option>
-                        <option value="Giường Đôi" {{ $loaiphong->LoaiGiuong == 'Giường Đôi' ? 'selected' : '' }}>Giường Đôi</option>
-                    </select>
+                    <label for="TenDV" class="form-label">Tên dịch vụ</label>
+                    <input type="text" class="form-control" id="TenDV" name="TenDV" value="{{ $dichvu->TenDV  }}" required>
                 </div>
                 <!-- Đơn Giá -->
                 <div class="mb-3">
                     <label for="DonGia" class="form-label">Đơn Giá</label>
-                    <input type="number" class="form-control" id="DonGia" name="DonGia" value="{{ $loaiphong->DonGia }}" required>
+                    <input type="text" class="form-control" id="DonGia" name="DonGia" value="{{ $dichvu->DonGia }}" required>
                 </div>
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                    <a href="{{ route('loaiphong.index') }}" class="btn btn-secondary">Về</a>
+                    <a href="{{ route('dichvu.index') }}" class="btn btn-secondary">Hủy</a>
                 </div>
             </form>
         </div>

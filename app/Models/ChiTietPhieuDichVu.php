@@ -13,6 +13,7 @@ class ChiTietPhieuDichVu extends Model
     public $timestamps = false;
     protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
     public $incrementing = false; // Không tự tăng
+    protected $primaryKey = null;
 
     protected $fillable = ['MaPhieuDV', 'MaDV', 'SoLuong', 'DonGia'];
 

@@ -26,6 +26,7 @@ class PhieuDichVuController extends Controller
             'NgayLap' => 'required|date',
             'TongTien' => 'required|numeric',
             'MaPT' => 'nullable|exists:phieuthue,MaPT',
+            
         ]);
 
         PhieuDichVu::create($request->all());
