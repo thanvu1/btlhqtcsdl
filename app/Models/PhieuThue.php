@@ -11,6 +11,8 @@ class PhieuThue extends Model
     protected $table = 'phieuthue';
     protected $primaryKey = 'MaPT';
     public $timestamps = false;
+    protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
+    public $incrementing = false; // Không tự tăng
 
     protected $fillable = ['MaPT', 'MaPhong', 'MaKH', 'NgayThue', 'NgayTra', 'GiaMotNgay', 'MaNV'];
 
@@ -43,5 +45,10 @@ class PhieuThue extends Model
     {
         return $this->belongsToMany(DichVu::class, 'chitietphieudichvu', 'MaPhieuDV', 'MaDV')
                     ->withPivot('SoLuong', 'DonGia');
+    }
+    
+    public function phieuDichVus()
+    {
+        return $this->hasMany(PhieuDichVu::class, 'MaPT', 'MaPT'); // Mối quan hệ hasMany
     }
 }

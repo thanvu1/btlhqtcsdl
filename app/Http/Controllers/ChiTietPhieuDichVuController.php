@@ -9,12 +9,17 @@ use Illuminate\Http\Request;
 
 class ChiTietPhieuDichVuController extends Controller
 {
+    // 1) Lấy danh sách chi tiết phiếu, phân trang
     public function index()
     {
-        $chitietphieus = ChiTietPhieuDichVu::with(['phieuDichVu', 'dichVu'])->paginate(10);
+        // Eager Loading phieuDichVu và dichVu để giảm query N+1
+        $chitietphieus = ChiTietPhieuDichVu::with(['phieuDichVu', 'dichVu'])
+                            ->paginate(10);
+
         return view('chitietphieu.index', compact('chitietphieus'));
     }
 
+    // 2) Form tạo mới
     public function create()
     {
         $phieudichvus = PhieuDichVu::all();
@@ -22,51 +27,77 @@ class ChiTietPhieuDichVuController extends Controller
         return view('chitietphieu.create', compact('phieudichvus', 'dichvus'));
     }
 
+    // 3) Xử lý lưu record mới
     public function store(Request $request)
     {
         $request->validate([
             'MaPhieuDV' => 'required|exists:phieudichvu,MaPhieuDV',
-            'MaDV' => 'required|exists:dichvu,MaDV',
-            'SoLuong' => 'required|integer|min:1',
-            'DonGia' => 'required|numeric|min:0',
+            'MaDV'      => 'required|exists:dichvu,MaDV',
+            'SoLuong'   => 'required|integer|min:0',
+            'DonGia'    => 'required|numeric|min:0',
         ]);
 
         ChiTietPhieuDichVu::create($request->all());
-        return redirect()->route('chitietphieu.index')->with('success', 'Chi Tiết Phiếu Dịch Vụ được thêm thành công.');
+
+        return redirect()->route('chitietphieu.index')
+                         ->with('success', 'Chi Tiết Phiếu DV tạo thành công!');
     }
 
-    public function show($id)
+    // 4) Hiển thị chi tiết 1 record
+    //    Phải nhận 2 tham số: $MaPhieuDV, $MaDV
+    public function show($MaPhieuDV, $MaDV)
     {
-        $chitietphieu = ChiTietPhieuDichVu::with(['phieuDichVu', 'dichVu'])->findOrFail($id);
+        $chitietphieu = ChiTietPhieuDichVu::with(['phieuDichVu', 'dichVu'])
+                            ->where('MaPhieuDV', $MaPhieuDV)
+                            ->where('MaDV', $MaDV)
+                            ->firstOrFail();
+
         return view('chitietphieu.show', compact('chitietphieu'));
     }
 
-    public function edit($id)
+    // 5) Form edit
+    public function edit($MaPhieuDV, $MaDV)
     {
-        $chitietphieu = ChiTietPhieuDichVu::findOrFail($id);
+        $chitietphieu = ChiTietPhieuDichVu::where('MaPhieuDV', $MaPhieuDV)
+                            ->where('MaDV', $MaDV)
+                            ->firstOrFail();
+
         $phieudichvus = PhieuDichVu::all();
         $dichvus = DichVu::all();
+
         return view('chitietphieu.edit', compact('chitietphieu', 'phieudichvus', 'dichvus'));
     }
 
-    public function update(Request $request, $id)
+    // 6) Cập nhật
+    public function update(Request $request, $MaPhieuDV, $MaDV)
     {
+        // 1) Tìm chi tiết phiếu
+        $chitiet = ChiTietPhieuDichVu::where('MaPhieuDV', $MaPhieuDV)
+            ->where('MaDV', $MaDV)
+            ->firstOrFail();
+
+        // 2) Validate
         $request->validate([
-            'MaPhieuDV' => 'required|exists:phieudichvu,MaPhieuDV',
-            'MaDV' => 'required|exists:dichvu,MaDV',
-            'SoLuong' => 'required|integer|min:1',
-            'DonGia' => 'required|numeric|min:0',
+            'SoLuong' => 'required|integer|min:0',
+            'DonGia'  => 'required|numeric|min:0',
         ]);
 
-        $chitietphieu = ChiTietPhieuDichVu::findOrFail($id);
-        $chitietphieu->update($request->all());
-        return redirect()->route('chitietphieu.index')->with('success', 'Chi Tiết Phiếu Dịch Vụ được cập nhật thành công.');
-    }
+        // 3) Cập nhật
+        $chitiet->update($request->all());
 
-    public function destroy($id)
+        // 4) Điều hướng về index
+        return redirect()->route('chitietphieu.index')
+                        ->with('success', 'Cập nhật thành công!');
+    }
+    // 7) Xoá
+    public function destroy($MaPhieuDV, $MaDV)
     {
-        $chitietphieu = ChiTietPhieuDichVu::findOrFail($id);
-        $chitietphieu->delete();
-        return redirect()->route('chitietphieu.index')->with('success', 'Chi Tiết Phiếu Dịch Vụ được xóa thành công.');
+        // Thay vì firstOrFail() -> delete(), ta xóa trực tiếp bằng Query Builder:
+        ChiTietPhieuDichVu::where('MaPhieuDV', $MaPhieuDV)
+            ->where('MaDV', $MaDV)
+            ->delete();
+
+        return redirect()->route('chitietphieu.index')
+                        ->with('success', 'Xoá Chi Tiết Phiếu DV thành công!');
     }
 }

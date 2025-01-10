@@ -12,6 +12,8 @@ class PhieuDichVu extends Model
     protected $table = 'phieudichvu';
     protected $primaryKey = 'MaPhieuDV';
     public $timestamps = false;
+    protected $keyType = 'string';  // Định nghĩa kiểu khóa chính là chuỗi
+    public $incrementing = false; // Không tự tăng
 
     protected $fillable = ['MaPhieuDV', 'NgayLap', 'TongTien', 'MaPT'];
 
@@ -20,4 +22,10 @@ class PhieuDichVu extends Model
     {
         return $this->hasMany(ChiTietPhieuDichVu::class, 'MaPhieuDV', 'MaPhieuDV');
     }
+
+    public function phieuThue()
+    {
+        return $this->belongsTo(PhieuThue::class, 'MaPT', 'MaPT'); 
+    }
 }
+

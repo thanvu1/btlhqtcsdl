@@ -19,4 +19,13 @@ class HoaDonThanhToan extends Model
     {
         return $this->belongsTo(PhieuThue::class, 'MaPT', 'MaPT');
     }
+    
+    public function khachHang()
+    {
+        return $this->belongsTo(KhachHang::class, 'MaKH');
+    }
+    public function nhanVien()
+    {
+        return $this->belongsTo(NhanVien::class, 'MaNV', 'MaNV'); // Khóa ngoại và khóa nội bộ
+    }
 }
