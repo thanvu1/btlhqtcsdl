@@ -83,7 +83,7 @@
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">Cập Nhật</button>
-                    <a href="{{ route('hoadonthanhtoan.index') }}" class="btn btn-secondary">Hủy</a>
+                    <a href="{{ route('dichvu.index') }}" class="btn btn-secondary">Hủy</a>
                 </div>
             </form>
         </div>

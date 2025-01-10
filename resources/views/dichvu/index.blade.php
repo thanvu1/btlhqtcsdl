@@ -121,38 +121,36 @@ table.table .avatar {
 	vertical-align: middle;
 	margin-right: 10px;
 }
-.pagination {
-	float: right;
-	margin: 0 0 5px;
-}
-.pagination li a {
-	border: none;
-	font-size: 13px;
-	min-width: 30px;
-	min-height: 30px;
-	color: #999;
-	margin: 0 2px;
-	line-height: 30px;
-	border-radius: 2px !important;
-	text-align: center;
-	padding: 0 6px;
-}
-.pagination li a:hover {
-	color: #666;
-}
-.pagination li.active a, .pagination li.active a.page-link {
-	background: #03A9F4;
-}
-.pagination li.active a:hover {
-	background: #0397d6;
-}
-.pagination li.disabled i {
-	color: #ccc;
-}
-.pagination li i {
-	font-size: 16px;
-	padding-top: 6px
-}
+.pagination-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .pagination {
+        margin: 0;
+    }
+    .pagination li {
+        margin-right: 5px;
+    }
+    .pagination li a,
+    .pagination li span {
+        color: #566787;
+        background: #fff;
+        border: 1px solid #ddd;
+        padding: 6px 12px;
+        border-radius: 4px;
+    }
+    .pagination li a:hover,
+    .pagination li span:hover {
+        background: #03A9F4;
+        color: #fff;
+    }
+    .pagination li.active a {
+        background: #03A9F4;
+        color: #fff;
+        border-color: #03A9F4;
+    }
 .hint-text {
 	float: left;
 	margin-top: 10px;
@@ -302,23 +300,51 @@ table.table .avatar {
                     <td>{{ $dichvu->TenDV }}</td>
                     <td>{{ number_format($dichvu->DonGia, 0, ',', '.') }} VND</td>
                     <td>
-                        <!-- Sửa dịch vụ -->
-                        <a href="{{ route('dichvu.edit', $dichvu->MaDV) }}" class="btn btn-warning btn-sm">Sửa</a>
-
-                        <!-- Xóa dịch vụ -->
-                        <form action="{{ route('dichvu.destroy', $dichvu->MaDV) }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
-                        </form>
-                    </td>
+						<!-- Sửa dịch vụ -->
+						<a href="{{ route('dichvu.edit', $dichvu->MaDV) }}" class="btn btn-warning btn-sm">Sửa</a>
+					
+						<!-- Xóa dịch vụ -->
+						<button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+								data-bs-target="#deleteModal{{ $dichvu->MaDV }}">Xóa
+						</button>
+					
+						<!-- Modal Xóa Dịch Vụ -->
+						<div class="modal fade" id="deleteModal{{ $dichvu->MaDV }}" tabindex="-1"
+							 aria-labelledby="deleteModalLabel{{ $dichvu->MaDV }}" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="deleteModalLabel{{ $dichvu->MaDV }}">Xóa Dịch Vụ</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										Bạn có chắc chắn muốn xóa dịch vụ <b>{{ $dichvu->TenDV }}</b>?
+									</div>
+									<div class="modal-footer">
+										<form action="{{ route('dichvu.destroy', $dichvu->MaDV) }}" method="POST">
+											@csrf
+											@method('DELETE')
+											<button type="submit" class="btn btn-danger">Xóa</button>
+										</form>
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</td>
+					
                 </tr>
             @endforeach
         </tbody>
     </table>
 
     <!-- Phân trang (nếu có) -->
-    {{ $dichvus->links() }}
+    <div class="pagination-wrapper">
+		<div class="hint-text">Hiển thị <b>{{ $dichvus->firstItem() }}</b> đến <b>{{ $dichvus->lastItem() }}</b> trong tổng số <b>{{ $dichvus->total() }}</b> dịch vụ</div>
+		<div class="pagination">
+			{{ $dichvus->links('pagination::bootstrap-4') }}
+		</div>
+	</div>
 	
 </div>
 

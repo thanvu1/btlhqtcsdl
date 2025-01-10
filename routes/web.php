@@ -21,6 +21,8 @@ use App\Http\Controllers\TungView2Controller;
 use App\Http\Controllers\TungFunctionController;
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('chitietphieu/{MaPhieuDV}/{MaDV}/edit', [ChiTietPhieuDichVuController::class, 'edit'])->name('chitietphieu.edit');
+     Route::resource('chitietphieu', ChiTietPhieuDichVuController::class)->except(['edit']);
     Route::get('/thong-ke/phong', [TungProc1Controller::class, 'thongKePhongTheoLoaiGiuong'])->name('phong.tungproc1');
     Route::get('/nhanvien/thongke', [TungProc2Controller::class, 'thongKeNhanVien'])->name('nhanvien.tungproc2');
     Route::get('/phong/controng', [TungView1Controller::class, 'index'])->name('phong.tungview1');
@@ -35,7 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('phieuthue', PhieuThueController::class);
     Route::resource('dichvu', DichVuController::class);
     Route::resource('phieudichvu', PhieuDichVuController::class);
-    Route::resource('chitietphieu', ChiTietPhieuDichVuController::class);
+    
+   
     
 });
 

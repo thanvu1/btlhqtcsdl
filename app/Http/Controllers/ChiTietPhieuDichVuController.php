@@ -24,14 +24,33 @@ class ChiTietPhieuDichVuController extends Controller
 
     public function store(Request $request)
     {
+        // Kiểm tra và xác nhận các dữ liệu yêu cầu
         $request->validate([
             'MaPhieuDV' => 'required|exists:phieudichvu,MaPhieuDV',
             'MaDV' => 'required|exists:dichvu,MaDV',
-            'SoLuong' => 'required|integer|min:1',
+            'SoLuong' => 'required|integer|min:0',
             'DonGia' => 'required|numeric|min:0',
         ]);
 
-        ChiTietPhieuDichVu::create($request->all());
+        // Kiểm tra xem mã dịch vụ có tồn tại không
+        $dichvu = DichVu::find($request->MaDV);
+        if (!$dichvu) {
+            return redirect()->back()->withErrors('Mã dịch vụ không tồn tại.');
+        }
+
+        // Thêm chi tiết phiếu dịch vụ
+        try {
+            ChiTietPhieuDichVu::create([
+                'MaPhieuDV' => $request->MaPhieuDV,
+                'MaDV' => $request->MaDV,
+                'SoLuong' => $request->SoLuong,
+                'DonGia' => $request->DonGia,
+            ]);
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+
+        // Redirect đến trang index với thông báo thành công
         return redirect()->route('chitietphieu.index')->with('success', 'Chi Tiết Phiếu Dịch Vụ được thêm thành công.');
     }
 

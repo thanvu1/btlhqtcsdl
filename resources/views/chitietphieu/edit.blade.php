@@ -62,28 +62,28 @@
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <div class="contact-form">
             <h1>Chỉnh Sửa Chi Tiết Phiếu Dịch Vụ</h1>
-            <form action="{{ route('chitietphieudichvu.update', chitietphieudichvu->MaPhieuDV) }}" method="POST">
+            <form action="{{ route('chitietphieu.update', ['maPhieuDV' => $chitietphieu->MaPhieuDV, 'maDV' => $chitietphieu->MaDV]) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <!-- Mã Phiếu Dịch Vụ -->
                 <div class="mb-3">
                     <label for="MaPhieuDv" class="form-label">Mã Phiếu Dịch Vụ</label>
-                    <input type="text" class="form-control" id="id" name="MaPhieuDV" value="{{ $chitietphieudichvu->MaPhieuDv }}" readonly>
+                    <input type="text" class="form-control" id="id" name="MaPhieuDV" value="{{ $chitietphieu->MaPhieuDV }}" readonly>
                 </div>
                 <!-- Mã Dịch Vụ -->
                 <div class="mb-3">
                     <label for="MaDV" class="form-label">Mã dịch vụ</label>
-                    <input type="text" class="form-control" id="MaDV" name="MaDV" value="{{ $chitietphieudichvu->MaDV  }}" required>
+                    <input type="text" class="form-control" id="MaDV" name="MaDV" value="{{ $chitietphieu->MaDV }}" readonly>
                 </div>
                 <!-- Số Lượng -->
                 <div class="mb-3">
                     <label for="SoLuong" class="form-label">Số Lượng</label>
-                    <input type="text" class="form-control" id="SoLuong" name="SoLuong" value="{{ $chitietphieudichvu->MaDV  }}" required>
+                    <input type="text" class="form-control" id="SoLuong" name="SoLuong" value="{{ $chitietphieu->SoLuong }}" required>
                 </div>
                 <!-- Đơn Giá -->
                 <div class="mb-3">
                     <label for="DonGia" class="form-label">Đơn Giá</label>
-                    <input type="text" class="form-control" id="DonGia" name="DonGia" value="{{ $dichvu->DonGia }}" required>
+                    <input type="text" class="form-control" id="DonGia" name="DonGia" value="{{ $chitietphieu->DonGia }}" required>
                 </div>
                 <!-- Nút hành động -->
                 <div class="d-flex justify-content-between">
@@ -91,6 +91,9 @@
                     <a href="{{ route('chitietphieu.index') }}" class="btn btn-secondary">Hủy</a>
                 </div>
             </form>
+            
+            
+            
         </div>
     </div>
 </body>
