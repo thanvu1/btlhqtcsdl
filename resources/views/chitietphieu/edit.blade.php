@@ -75,6 +75,11 @@
                     <label for="MaDV" class="form-label">Mã dịch vụ</label>
                     <input type="text" class="form-control" id="MaDV" name="MaDV" value="{{ $chitietphieudichvu->MaDV  }}" required>
                 </div>
+                <!-- Tên Dịch Vụ -->
+                <div class="mb-3">
+                    <label for="TenDV" class="form-label">Tên dịch vụ</label>
+                    <input type="text" class="form-control" id="TenDV" name="TenDV" value="{{ $chitietphieudichvu->TenDV  }}" required>
+                </div>
                 <!-- Số Lượng -->
                 <div class="mb-3">
                     <label for="SoLuong" class="form-label">Số Lượng</label>

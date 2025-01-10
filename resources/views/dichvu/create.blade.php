@@ -13,7 +13,7 @@
             <div class="card-body">
                 <h1 class="text-center text-success mb-3">Tạo Dịch Vụ</h1>
                 <p class="text-center text-muted">Vui lòng điền thông tin dịch vụ</p>
-                <form action="{{ route('loaiphong.store') }}" method="POST">
+                <form action="{{ route('dichvu.store') }}" method="POST">
                     @csrf
                     <!-- Mã dịch vụ -->
                     <div class="mb-3">

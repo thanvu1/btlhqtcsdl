@@ -18,6 +18,11 @@ use App\Http\Controllers\TungProc1Controller;
 use App\Http\Controllers\TungProc2Controller;
 use App\Http\Controllers\TungView1Controller;
 use App\Http\Controllers\TungView2Controller;
+use App\Http\Controllers\LamView9Controller;
+use App\Http\Controllers\LamView10Controller;
+use App\Http\Controllers\LamProc9Controller;
+
+
 
 
 Route::middleware(['auth'])->group(function () {
@@ -25,6 +30,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/nhanvien/thongke', [TungProc2Controller::class, 'thongKeNhanVien'])->name('nhanvien.tungproc2');
     Route::get('/phong/controng', [TungView1Controller::class, 'index'])->name('phong.tungview1');
     Route::get('/phieuthue/thongke', [TungView2Controller::class, 'index'])->name('phieuthue.tungview2');
+    Route::get('/view9', [LamView9Controller::class, 'index'])->name('nhanvien.lamview9');
+    Route::get('/view10', [LamView10Controller::class, 'index'])->name('dichvu.lamview10');
+    Route::get('/dich-vu/khach-hang', [LamProc9Controller::class, 'getDanhSachKhachHang'])->name('dichvu.lamproc9');
     Route::resource('hoadonthanhtoan', HoaDonThanhToanController::class);
     Route::resource('loaiphong', LoaiPhongController::class);
     Route::resource('phong', PhongController::class);

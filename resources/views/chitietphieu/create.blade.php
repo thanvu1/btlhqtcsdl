@@ -13,7 +13,7 @@
             <div class="card-body">
                 <h1 class="text-center text-success mb-3">Tạo Chi Tiết Phiếu Dịch Vụ</h1>
                 <p class="text-center text-muted">Vui lòng điền thông tin chi tiết phiếu dịch vụ</p>
-                <form action="{{ route('loaiphong.store') }}" method="POST">
+                <form action="{{ route('chitietphieu.store') }}" method="POST">
                     @csrf
                     <!-- Mã phiếu dịch vụ -->
                     <div class="mb-3">
@@ -24,6 +24,11 @@
                     <div class="mb-3">
                         <label for="MaDV" class="form-label">Mã dịch vụ</label>
                         <input type="text" class="form-control" id="MaDV" name="MaDV" placeholder="VD: N'DV001''" required>
+                    </div>
+                    <!-- Tên Dịch Vụ -->
+                    <div class="mb-3">
+                        <label for="TenDV" class="form-label">Tên dịch vụ</label>
+                        <input type="text" class="form-control" id="TenDV" name="TenDV" placeholder="VD: N'Giặt Ủi''" required>
                     </div>
                     <!-- Số Lượng -->
                     <div class="mb-3">

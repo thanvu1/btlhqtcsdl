@@ -261,12 +261,10 @@ table.table .avatar {
 					<a href="{{ route('nhanvien.tungproc2') }}" class="btn btn-primary me-2 mb-2">
 						Xem Thống Kê
 					</a>
-					<a href="" class="btn btn-primary me-2 mb-2">
-						Xem Phim Sắp Chiếu
+					<a href="{{ route('nhanvien.lamview9') }}" class="btn btn-primary me-2 mb-2">
+						Danh sách 
 					</a>
-					<a href="" class="btn btn-secondary mb-2">
-						<i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
-					</a>
+					
 				</div>
 				</div>
 			</div>

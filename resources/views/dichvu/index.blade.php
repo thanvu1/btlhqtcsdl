@@ -260,8 +260,8 @@ table.table .avatar {
 					<a href="{{ route('dichvu.create') }}" class="btn btn-success me-2 mb-2">
 						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
 					</a>
-					<a href="" class="btn btn-primary me-2 mb-2">
-						Xem dịch vụ
+					<a href="{{ route('dichvu.lamview10')}}" class="btn btn-primary me-2 mb-2">
+						Doanh thu dịch vụ
 					</a>
 
 				</div>
@@ -318,7 +318,9 @@ table.table .avatar {
     </table>
 
     <!-- Phân trang (nếu có) -->
-    {{ $dichvus->links() }}
+	<div class="clearfix">
+				{{ $dichvus->links('pagination::bootstrap-4') }}
+			</div>
 	
 </div>
 
