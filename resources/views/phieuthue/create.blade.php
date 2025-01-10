@@ -26,7 +26,9 @@
                         <select class="form-select" id="MaPhong" name="MaPhong" required>
                             <option value="" disabled selected>Chọn mã phòng</option>
                             @foreach ($phongs as $phong)
-                                <option value="{{ $phong->MaPhong }}">{{ $phong->MaPhong }}</option>
+                                <option value="{{ $phong->MaPhong }}" data-gia="{{ $phong->DonGia }}">
+                                    {{ $phong->MaPhong }} - Giá: {{ number_format($phong->DonGia, 0, ',', '.') }} VND
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -53,8 +55,8 @@
                     <!-- Giá Mỗi Ngày -->
                     <div class="mb-3">
                         <label for="GiaMotNgay" class="form-label">Giá Mỗi Ngày</label>
-                        <input type="number" step="0.01" class="form-control" id="GiaMotNgay" name="GiaMotNgay" placeholder="VD: 500000" required>
-                    </div>
+                        <input type="number" step="0.01" class="form-control" id="GiaMotNgay" name="GiaMotNgay" placeholder="Tự động điền" readonly required>
+                    </div> 
                     <!-- Mã Nhân Viên -->
                     <div class="mb-3">
                         <label for="MaNV" class="form-label">Mã Nhân Viên</label>

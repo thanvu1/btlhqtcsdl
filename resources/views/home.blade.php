@@ -97,8 +97,8 @@
     </nav>
     <div class="hero-section">
         <div class="container">
-            <h1 class="display-4">WEES</h1>
-            <p class="lead">Trang chủ quản lý các bộ phim, hãng phim và thể loại phim.</p>
+            <h1 class="display-4">BTL HQTCSDL</h1>
+            <p class="lead">Trang chủ quản lý khách sạn.</p>
             <hr class="my-4">
             <p>Chọn các chức năng bên dưới để bắt đầu.</p>
         </div>
