@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
 class PhongController extends Controller
 {
     // Hiển thị danh sách phòng
-    public function index()
+    public function index(Request $request)
     {
         $phongs = Phong::with('loaiPhong')->paginate(10);
         return view('phong.index', compact('phongs'));
@@ -81,4 +81,5 @@ class PhongController extends Controller
         $phong->delete();
         return redirect()->route('phong.index')->with('success', 'Phòng được xóa thành công.');
     }
+
 }

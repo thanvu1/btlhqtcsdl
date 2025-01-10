@@ -30,9 +30,10 @@ class PhieuThueController extends Controller
             // Thêm phiếu thuê mới vào bảng PHIEUTHUE
             $phieuThue = PhieuThue::create($request->all());
 
-            // Kiểm tra trạng thái của phòng sau khi trigger chạy
+            // Kiểm tra trạng thái của phòng sau khi trigger đã chạy
             $phong = Phong::where('MaPhong', $request->MaPhong)->first();
 
+            // Kiểm tra xem tình trạng phòng có phải là 'Đã thuê'
             if ($phong && $phong->TinhTrang === 'Đã thuê') {
                 // Trigger đã hoạt động, quay về trang index với thông báo thành công
                 return redirect()->route('phieuthue.index')->with('success', 'Phiếu thuê đã được thêm thành công và trigger đã hoạt động!');
@@ -45,6 +46,7 @@ class PhieuThueController extends Controller
             return redirect()->route('phieuthue.index')->with('error', 'Có lỗi xảy ra: ' . $e->getMessage());
         }
     }
+
 
 
     public function show($id)

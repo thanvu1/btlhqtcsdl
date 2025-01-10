@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+
+
+    <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>PHÒNG</title>
+<title>DichVu</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -249,21 +251,19 @@ table.table .avatar {
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2>PHÒNG</br></h2>
+						<h2>Dịch Vụ</br></h2>
 					</div>
 					<div class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap">
-
 					<a href="{{ route('home') }}" class="btn btn-secondary me-2 mb-2">
 						<i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span>
 					</a>
-					<a href="{{ route('phong.create') }}" class="btn btn-success me-2 mb-2">
+					<a href="{{ route('dichvu.create') }}" class="btn btn-success me-2 mb-2">
 						<i class="material-icons">&#xE147;</i> <span>Thêm mới</span>
 					</a>
-					<a href="{{ route('phong.tungproc1') }}" class="btn btn-primary me-2 mb-2">
-						Xem Thống Kê Phòng
+					<a href="" class="btn btn-primary me-2 mb-2">
+						Xem dịch vụ
 					</a>
-					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.tungview1') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
-					
+
 				</div>
 				</div>
 			</div>
@@ -284,78 +284,42 @@ table.table .avatar {
                     }
                 }, 2500); // 2500ms = 2.5 giây
             </script>
+    
+    <!-- Bảng danh sách dịch vụ -->
     <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Mã Phòng</th>
-                <th>Tên Phòng</th>
-                <th>Tình Trạng</th>
-                <th>Loại Phòng</th>
-                <th>Loại Giường</th>
+                <th>Mã Dịch Vụ</th>
+                <th>Tên Dịch Vụ</th>
                 <th>Đơn Giá</th>
-                <th>Ghi Chú</th>
-                <th>Thao Tác</th>
+                <th>Hành Động</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($phongs as $phong)
-                    <tr>
-                        <td>{{ $phong->MaPhong }}</td>
-                        <td>{{ $phong->TenPhong }}</td>
-                        <td>{{ $phong->TinhTrang }}</td>
-                        <td>{{ $phong->loaiPhong->TenLP ?? 'Không xác định' }}</td>
-                        <td>{{ $phong->loaiPhong->LoaiGiuong ?? 'Không xác định' }}</td>
-                        <td>{{ number_format($phong->loaiPhong->DonGia ?? 0, 0, ',', '.') }} VND</td>
-                        <td>{{ $phong->GhiChu }}</td>
-                        <td>
-                            <a href="{{ route('phong.edit', $phong->MaPhong) }}" class="edit" >
-								<i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							</a>
-                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal{{ $phong->MaPhong }}">Xóa
-                            </button>
-                            <!-- Modal -->
-                            <div class="modal fade" id="deleteModal{{ $phong->MaPhong }}" tabindex="-1"
-                                 aria-labelledby="deleteModalLabel{{ $phong->MaPhong }}" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="deleteModalLabel{{ $phong->MaPhong }}">Xóa phòng</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-											@if ($phong->TinhTrang === 'Đã thuê')
-                    							<p class="text-danger">Phòng <b>{{ $phong->TenPhong }}</b> đang ở tình trạng "Đã thuê". Không thể xóa.</p>
-                							@else
-                    							Bạn có chắc chắn muốn xóa phòng <b>{{ $phong->TenPhong }}</b>?
-                							@endif
-            							</div>
-                                        <div class="modal-footer">
-                							@if ($phong->TinhTrang === 'Đã thuê')
-                    							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                							@else
-                    							<form action="{{ route('phong.destroy', $phong->MaPhong) }}" method="POST">
-                        							@csrf
-                        							@method('DELETE')
-                        							<button type="submit" class="btn btn-danger">Xóa</button>
-                    							</form>
-                    							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                							@endif
-            							</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-			</tbody>
-			</table>
-			{{-- Phân trang nếu cần --}}
-			<div class="d-flex justify-content-center">
-				{{ $phongs->links('pagination::bootstrap-4') }}
-			</div>
-		</div>
-	</div>
+            @foreach ($dichvus as $dichvu)
+                <tr>
+                    <td>{{ $dichvu->MaDV }}</td>
+                    <td>{{ $dichvu->TenDV }}</td>
+                    <td>{{ number_format($dichvu->DonGia, 0, ',', '.') }} VND</td>
+                    <td>
+                        <!-- Sửa dịch vụ -->
+                        <a href="{{ route('dichvu.edit', $dichvu->MaDV) }}" class="btn btn-warning btn-sm">Sửa</a>
+
+                        <!-- Xóa dịch vụ -->
+                        <form action="{{ route('dichvu.destroy', $dichvu->MaDV) }}" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa?')">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+    <!-- Phân trang (nếu có) -->
+    {{ $dichvus->links() }}
+	
 </div>
 
 </body>

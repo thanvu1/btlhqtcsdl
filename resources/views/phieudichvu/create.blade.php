@@ -27,6 +27,11 @@
                     </div>
                     
                     <div class="mb-3">
+                        <label for="TongTien" class="form-label">Tổng tiền</label>
+                        <input type="number" class="form-control" id="TongTien" name="TongTien" required>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="MaPT" class="form-label">Mã Phiếu Thuê</label>
                         <select class="form-select" id="MaPT" name="MaPT" required>
                             <option value="" disabled selected>Chọn phiếu thuê</option>

@@ -23,6 +23,7 @@ class PhieuDichVuController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'MaPhieuDV' => 'required|unique:phieudichvu,MaPhieuDV',
             'NgayLap' => 'required|date',
             'TongTien' => 'required|numeric',
             'MaPT' => 'nullable|exists:phieuthue,MaPT',
