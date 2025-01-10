@@ -46,4 +46,9 @@ class PhieuThue extends Model
         return $this->belongsToMany(DichVu::class, 'chitietphieudichvu', 'MaPhieuDV', 'MaDV')
                     ->withPivot('SoLuong', 'DonGia');
     }
+    
+    public function phieuDichVus()
+    {
+        return $this->hasMany(PhieuDichVu::class, 'MaPT', 'MaPT'); // Mối quan hệ hasMany
+    }
 }

@@ -7,6 +7,7 @@ use App\Models\PhieuThue;
 use App\Models\NhanVien;
 use App\Models\KhachHang;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HoaDonThanhToanController extends Controller
 {
@@ -75,5 +76,14 @@ class HoaDonThanhToanController extends Controller
         $hoadon = HoaDonThanhToan::findOrFail($id);
         $hoadon->delete();
         return redirect()->route('hoadonthanhtoan.index')->with('success', 'Hóa Đơn Thanh Toán được xóa thành công.');
+    }
+
+    public function danhsach()
+    {
+        // Truy vấn dữ liệu từ View_6
+        $danhsachhoadon = DB::table('View_6')->orderByRaw('CAST(MaHD AS INT)')->paginate(10);
+
+        // Trả dữ liệu ra view
+        return view('hoadonthanhtoan.view6', compact('danhsachhoadon'));
     }
 }

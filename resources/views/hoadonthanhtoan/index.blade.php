@@ -174,6 +174,10 @@
                             </a>
                             <a href="{{ route('home') }}" class="btn btn-secondary"><i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span></a>
                             
+                            <a href="{{ route('hoadonthanhtoan.view6') }}" class="btn btn-success me-2 mb-2">
+                                <span>Danh sách hóa đơn</span>
+                            </a>
+                            
                         </div>
                     </div>
                 </div>
