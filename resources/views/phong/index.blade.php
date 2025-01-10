@@ -264,8 +264,8 @@ table.table .avatar {
                         <a href="{{ route('tvu.solanphongduocsudungtrongthang') }}" class="btn btn-primary me-2 mb-2">
                             Số lần sử dụng phòng
                         </a>
-					<a href="{{ route('tvu.kiem-tra-tinh-trang') }}" class="btn btn-secondary mb-2">
-						<i class="material-icons">&#xE5C4;</i> <span>Phim theo hãng</span>
+					<a href="{{ route('tvu.kiem-tra-tinh-trang') }}" class="btn btn-primary mb-2">
+						<span>Kiểm tra tình trạng phòng</span>
 					</a>
 					</div>
 					<a href="{{ route('phong.tungproc1') }}" class="btn btn-primary me-2 mb-2">
