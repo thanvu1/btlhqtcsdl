@@ -28,7 +28,6 @@ class HoaDonThanhToanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'NgayLap' => 'required|date',
             'TenKH' => 'required|max:50',
             'MaKH' => 'required|exists:khachhang,MaKH',
             'MaNV' => 'required|exists:nhanvien,MaNV',
@@ -78,6 +77,7 @@ class HoaDonThanhToanController extends Controller
         return redirect()->route('hoadonthanhtoan.index')->with('success', 'Hóa Đơn Thanh Toán được xóa thành công.');
     }
 
+    // VIEW 6
     public function danhsach()
     {
         // Truy vấn dữ liệu từ View_6

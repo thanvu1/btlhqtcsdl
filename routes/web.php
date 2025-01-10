@@ -23,6 +23,9 @@ use App\Http\Controllers\TungProc2Controller;
 use App\Http\Controllers\TungView1Controller;
 use App\Http\Controllers\TungView2Controller;
 use App\Http\Controllers\TungFunctionController;
+use App\Http\Controllers\LinhView5Controller;
+use App\Http\Controllers\LinhTrig5Controller;
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('chitietphieu', [ChiTietPhieuDichVuController::class, 'index'])
@@ -61,6 +64,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/phong/controng', [TungView1Controller::class, 'index'])->name('phong.tungview1');
     Route::get('/phieuthue/thongke', [TungView2Controller::class, 'index'])->name('phieuthue.tungview2');
     Route::get('/hoadonthanhtoan/tongtien', [TungFunctionController::class, 'index'])->name('hoadonthanhtoan.tungfunction');
+    Route::get('/khachhang/view5', [LinhView5Controller::class, 'index'])->name('khachhang.view5');
+    Route::get('/hoadon', [HoaDonThanhToanController::class, 'danhsach'])->name('hoadonthanhtoan.view6');
+    Route::delete('/phong-trig5/{id}', [LinhTrig5Controller::class, 'destroy'])->name('phong.destroy');
     Route::resource('hoadonthanhtoan', HoaDonThanhToanController::class);
     Route::resource('loaiphong', LoaiPhongController::class);
     Route::resource('phong', PhongController::class);

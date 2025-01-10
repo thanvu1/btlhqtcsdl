@@ -253,6 +253,7 @@ table.table .avatar {
 						<h2>PHÒNG</h2>
 					</div>
 					<div class="col-sm-12 d-flex justify-content-end align-items-center flex-wrap">
+
 					<a href="{{ route('home') }}" class="btn btn-secondary me-2 mb-2">
 						<i class="material-icons">&#xE5C4;</i> <span>Trang chủ</span>
 					</a>
@@ -273,6 +274,7 @@ table.table .avatar {
 						Xem Thống Kê Phòng
 					</a>
 					<a class="btn btn-primary me-2 mb-2" href="{{ route('phong.tungview1') }}" class="btn btn-success">Xem Phòng Còn Trống</a>
+					
 				</div>
 				</div>
 			</div>
@@ -333,16 +335,24 @@ table.table .avatar {
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            Bạn có chắc chắn muốn xóa phòng <b>{{ $phong->TenPhong }}</b>?
-                                        </div>
+											@if ($phong->TinhTrang === 'Đã thuê')
+                    							<p class="text-danger">Phòng <b>{{ $phong->TenPhong }}</b> đang ở tình trạng "Đã thuê". Không thể xóa.</p>
+                							@else
+                    							Bạn có chắc chắn muốn xóa phòng <b>{{ $phong->TenPhong }}</b>?
+                							@endif
+            							</div>
                                         <div class="modal-footer">
-                                            <form action="{{ route('phong.destroy', $phong->MaPhong) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Xóa</button>
-                                            </form>
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                                        </div>
+                							@if ($phong->TinhTrang === 'Đã thuê')
+                    							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                							@else
+                    							<form action="{{ route('phong.destroy', $phong->MaPhong) }}" method="POST">
+                        							@csrf
+                        							@method('DELETE')
+                        							<button type="submit" class="btn btn-danger">Xóa</button>
+                    							</form>
+                    							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                							@endif
+            							</div>
                                     </div>
                                 </div>
                             </div>

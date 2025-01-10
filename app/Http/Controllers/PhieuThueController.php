@@ -99,6 +99,7 @@ class PhieuThueController extends Controller
     }
 
 
+
     public function show($id)
     {
         $phieuthue = PhieuThue::with(['phong', 'khachHang', 'nhanVien'])->findOrFail($id);

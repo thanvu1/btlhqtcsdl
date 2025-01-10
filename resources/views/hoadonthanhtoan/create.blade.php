@@ -15,11 +15,12 @@
                 <p class="text-center text-muted">Vui lòng điền thông tin hóa đơn</p>
                 <form action="{{ route('hoadonthanhtoan.store') }}" method="POST">
                     @csrf
-                    <!-- Ngày Lập -->
+                    <!-- Ngày Lập
                     <div class="mb-3">
                         <label for="NgayLap" class="form-label">Ngày Lập</label>
                         <input type="date" class="form-control" id="NgayLap" name="NgayLap" required>
-                    </div>
+                    </div> -->
+                    
                     <!-- Tên Khách Hàng -->
                     <div class="mb-3">
                         <label for="TenKH" class="form-label">Tên Khách Hàng</label>
